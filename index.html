@@ -1,0 +1,1265 @@
+﻿<!DOCTYPE html>
+<html lang="pt-PT" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NV Madeira — Construção Especializada em Madeira | Portugal</title>
+  <meta name="description"
+    content="Construção de casas de madeira, decks e remodelações em todo Portugal. Nuno Filipe Venda — artesão carpinteiro com décadas de ofício. Orçamento gratuito." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#C9933A',
+            secondary: '#2A1F14',
+            background: '#1C2B1E',
+            foreground: '#F2EDE4',
+            muted: '#B8A898',
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+          borderRadius: {
+            DEFAULT: '0px',
+            none: '0px',
+            sm: '0px',
+            md: '0px',
+            lg: '0px',
+            xl: '0px',
+            full: '9999px', /* só para elementos circulares explícitos */
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            smoothReveal: {
+              '0%': { opacity: '0', transform: 'scale(1.06)' },
+              '100%': { opacity: '1', transform: 'scale(1)' },
+            },
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 700ms cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'smooth-reveal': 'smoothReveal 900ms ease-out forwards',
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    /* ─── Global Reset ─────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #1C2B1E;
+      color: #F2EDE4;
+    }
+
+    /* ─── Craft Surface Utility ─────────────────────── */
+    .craft-surface {
+      background: linear-gradient(135deg,
+          rgba(255, 255, 255, 0.03) 0%,
+          rgba(255, 255, 255, 0.01) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow:
+        0 2px 16px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .craft-surface::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    /* ─── Scroll-triggered animations ──────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+        transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-24px);
+      transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+        transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(24px);
+      transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+        transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-left.visible,
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 500ms cubic-bezier(0.34, 1.56, 0.64, 1),
+        transform 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .reveal-scale.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* ─── Nav scroll state ──────────────────────────── */
+    #navbar {
+      transition: background-color 300ms ease, box-shadow 300ms ease;
+    }
+
+    #navbar.scrolled {
+      background-color: rgba(28, 43, 30, 0.95);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    /* ─── Primary button glow ───────────────────────── */
+    .btn-primary {
+      background-color: #C9933A;
+      color: #1C2B1E;
+      font-weight: 600;
+      padding: 0.875rem 2rem;
+      font-size: 0.9375rem;
+      letter-spacing: 0.01em;
+      transition: background-color 300ms ease, box-shadow 300ms ease, transform 250ms ease;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background-color: #b7832e;
+      box-shadow: 0 0 24px rgba(201, 147, 58, 0.35);
+      transform: translateY(-2px);
+    }
+
+    /* ─── Secondary button ──────────────────────────── */
+    .btn-secondary {
+      background: transparent;
+      color: #F2EDE4;
+      font-weight: 500;
+      padding: 0.875rem 2rem;
+      font-size: 0.9375rem;
+      border: 1px solid rgba(201, 147, 58, 0.45);
+      letter-spacing: 0.01em;
+      transition: border-color 300ms ease, background 300ms ease, transform 250ms ease;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(201, 147, 58, 0.9);
+      background: rgba(201, 147, 58, 0.06);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body class="bg-background text-foreground font-sans antialiased">
+
+  <!-- ═══════════════════════════════════════════════════
+       NAVBAR
+       ═══════════════════════════════════════════════════ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group" aria-label="NV Madeira – página inicial">
+        <div
+          class="w-9 h-9 border border-primary/60 flex items-center justify-center transition-colors duration-300 group-hover:border-primary">
+          <span class="font-display text-primary font-semibold text-sm leading-none">NV</span>
+        </div>
+        <span class="font-display text-foreground text-lg tracking-wide">
+          NV <span class="text-primary">Madeira</span>
+        </span>
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden md:flex items-center gap-8 text-sm text-muted font-sans">
+        <a href="#servicos" class="hover:text-foreground transition-colors duration-200">Serviços</a>
+        <a href="#portfolio" class="hover:text-foreground transition-colors duration-200">Portfólio</a>
+        <a href="#sobre" class="hover:text-foreground transition-colors duration-200">Sobre</a>
+        <a href="#contacto" class="hover:text-foreground transition-colors duration-200">Contacto</a>
+      </div>
+
+      <!-- CTA -->
+      <a href="#contacto" class="btn-primary text-sm hidden md:inline-block">
+        Pedir Orçamento
+      </a>
+
+      <!-- Mobile menu toggle -->
+      <button id="menu-toggle" class="md:hidden text-foreground p-2" aria-label="Abrir menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="square" stroke-linejoin="miter" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu"
+      class="hidden md:hidden absolute top-full left-0 right-0 bg-background border-t border-white/[0.07] px-6 py-6 flex flex-col gap-5">
+      <a href="#servicos" class="text-muted hover:text-foreground transition-colors duration-200 text-sm">Serviços</a>
+      <a href="#portfolio" class="text-muted hover:text-foreground transition-colors duration-200 text-sm">Portfólio</a>
+      <a href="#sobre" class="text-muted hover:text-foreground transition-colors duration-200 text-sm">Sobre</a>
+      <a href="#contacto" class="text-muted hover:text-foreground transition-colors duration-200 text-sm">Contacto</a>
+      <a href="#contacto" class="btn-primary text-sm text-center mt-2">Pedir Orçamento</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════════ -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center px-6 md:px-12 overflow-hidden">
+
+    <!-- Background image -->
+    <div class="absolute inset-0 z-0">
+      <img src="assets/imagens/hero-fundo-madeira-floresta.jpg"
+        alt="Casa de madeira construída em timber frame em Portugal" class="w-full h-full object-cover object-center" />
+    </div>
+
+    <!-- Dark gradient overlay -->
+    <div class="absolute inset-0 z-10"
+      style="background: linear-gradient(to bottom, rgba(28,43,30,0.75) 0%, rgba(28,43,30,0.55) 40%, rgba(28,43,30,0.92) 100%);">
+    </div>
+
+    <!-- Subtle grain on overlay -->
+    <div class="absolute inset-0 z-10 opacity-30"
+      style="background: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 512 512\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.75\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'0.04\'/%3E%3C/svg%3E');">
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-20 flex flex-col items-center text-center max-w-4xl mx-auto pt-24">
+
+      <!-- Label -->
+      <div class="">
+        <span class="inline-flex items-center gap-2 text-primary text-xs font-sans uppercase tracking-[0.2em] mb-8">
+          <span class="w-8 h-px bg-primary/60 inline-block"></span>
+          Santarém · Portugal Continental
+          <span class="w-8 h-px bg-primary/60 inline-block"></span>
+        </span>
+      </div>
+
+      <!-- Headline -->
+      <h1
+        class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-foreground leading-[1.08] tracking-tight mb-7">
+        Casas de Madeira<br />
+        <em class="not-italic text-primary">Construídas com</em><br />
+        Décadas de Ofício
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="font-sans text-base md:text-xl text-muted font-light max-w-2xl leading-relaxed mb-12">
+        Construção especializada em timber frame e madeira natural.<br class="hidden md:block" />
+        Do projeto à obra — em todo Portugal.
+      </p>
+
+      <!-- CTA Group -->
+      <div class="flex flex-col sm:flex-row items-center gap-4">
+        <a href="#contacto" class="btn-primary">Pedir Orçamento Gratuito</a>
+        <a href="#portfolio" class="btn-secondary">Ver Portfólio</a>
+      </div>
+
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20">
+      <span class="text-muted text-xs uppercase tracking-widest font-sans">Explorar</span>
+      <div class="w-px h-10 bg-gradient-to-b from-muted/60 to-transparent animate-pulse"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 2 — SERVIÇOS
+       ═══════════════════════════════════════════════════ -->
+  <section id="servicos" class="py-28 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Header -->
+      <div class="flex flex-col items-center text-center mb-20">
+        <span class="inline-flex items-center gap-3 text-primary text-xs font-sans uppercase tracking-[0.2em] mb-5">
+          <span class="w-6 h-px bg-primary/50"></span>
+          Especialização
+          <span class="w-6 h-px bg-primary/50"></span>
+        </span>
+        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl text-foreground font-semibold leading-tight">
+          Domínio Absoluto da Madeira
+        </h2>
+        <p class="text-muted text-base max-w-xl mt-4 leading-relaxed">
+          Três décadas de ligação ao material mais nobre da construção, aplicadas em cada projeto com rigor e paixão.
+        </p>
+      </div>
+
+      <!-- Cards grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+
+        <!-- Card 1 — Casas de Madeira -->
+        <article class="craft-surface p-8 lg:p-10 flex flex-col items-start group">
+          <!-- Icon -->
+          <div class="mb-7 text-primary transition-transform duration-300 group-hover:-translate-y-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"
+              aria-hidden="true">
+              <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z" />
+              <path d="M9 21V12h6v9" />
+            </svg>
+          </div>
+          <!-- Content -->
+          <h3 class="font-display text-xl text-foreground mb-3 font-semibold">Casas de Madeira</h3>
+          <p class="text-muted text-sm leading-relaxed mb-8 flex-1">
+            Construção integral em timber frame e madeira maciça. Estruturas robustas, montagem precisa e acabamentos de
+            excelência para habitação permanente — de 100m² a 300m² e além.
+          </p>
+          <!-- Subtle bottom accent -->
+          <div class="w-10 h-px bg-primary/40 transition-all duration-300 group-hover:w-20 group-hover:bg-primary/80">
+          </div>
+        </article>
+
+        <!-- Card 2 — Decks & Exteriores -->
+        <article class="craft-surface p-8 lg:p-10 flex flex-col items-start group">
+          <!-- Icon -->
+          <div class="mb-7 text-primary transition-transform duration-300 group-hover:-translate-y-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"
+              aria-hidden="true">
+              <rect x="2" y="3" width="20" height="5" />
+              <rect x="2" y="10" width="20" height="5" />
+              <rect x="2" y="17" width="20" height="4" />
+            </svg>
+          </div>
+          <!-- Content -->
+          <h3 class="font-display text-xl text-foreground mb-3 font-semibold">Decks & Exteriores</h3>
+          <p class="text-muted text-sm leading-relaxed mb-8 flex-1">
+            Estruturas exteriores duradouras. Construção de decks em madeiras nobres, pergolas desenhadas à medida e
+            anexos perfeitamente integrados na paisagem e no espaço existente.
+          </p>
+          <div class="w-10 h-px bg-primary/40 transition-all duration-300 group-hover:w-20 group-hover:bg-primary/80">
+          </div>
+        </article>
+
+        <!-- Card 3 — Remodelações -->
+        <article class="craft-surface p-8 lg:p-10 flex flex-col items-start group">
+          <!-- Icon -->
+          <div class="mb-7 text-primary transition-transform duration-300 group-hover:-translate-y-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"
+              aria-hidden="true">
+              <path d="M15 12l-8.5 8.5a2.12 2.12 0 0 1-3-3L12 9" />
+              <path d="M17.64 6.36a4 4 0 0 1 0 5.66l-1.3 1.3-5.66-5.66 1.3-1.3a4 4 0 0 1 5.66 0z" />
+            </svg>
+          </div>
+          <!-- Content -->
+          <h3 class="font-display text-xl text-foreground mb-3 font-semibold">Remodelações</h3>
+          <p class="text-muted text-sm leading-relaxed mb-8 flex-1">
+            Renovação e requalificação de espaços com respeito pela madeira existente. Revestimentos, soalhos
+            tradicionais e intervenções estruturais com acabamento de mestre carpinteiro.
+          </p>
+          <div class="w-10 h-px bg-primary/40 transition-all duration-300 group-hover:w-20 group-hover:bg-primary/80">
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Turnkey / Complementary Services -->
+      <div id="servicos-complementares"
+        class="mt-16 craft-surface p-8 md:p-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10 lg:gap-16">
+        <div class="lg:w-1/2">
+          <span class="inline-flex items-center gap-3 text-primary text-xs font-sans uppercase tracking-[0.2em] mb-5">
+            <span class="w-6 h-px bg-primary/50"></span>
+            Serviço Chave-na-Mão
+          </span>
+          <h3 class="font-display text-2xl md:text-3xl text-foreground mb-4 font-semibold">Obras Integrais sem
+            Intermediários</h3>
+          <p class="text-muted text-sm leading-relaxed">
+            A madeira é a nossa assinatura, mas para garantir um controlo de qualidade absoluto do início ao fim,
+            assumimos toda a empreitada. Do levantamento de paredes ao acabamento final, centralize a sua obra num único
+            mestre.
+          </p>
+        </div>
+        <div class="lg:w-1/2 w-full grid grid-cols-1 sm:grid-cols-2 gap-8">
+          <div class="flex flex-col gap-3 group">
+            <div class="text-primary mb-1 transition-transform duration-300 group-hover:-translate-y-1">
+              <!-- Brick Wall Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <path d="M3 9h18" />
+                <path d="M3 15h18" />
+                <path d="M8 3v6" />
+                <path d="M16 3v6" />
+                <path d="M12 9v6" />
+                <path d="M8 15v6" />
+                <path d="M16 15v6" />
+              </svg>
+            </div>
+            <h4 class="font-display text-lg text-foreground font-semibold">Alvenaria Estrutural</h4>
+            <p class="text-muted text-xs leading-relaxed">Fundações, muros, betonilhas e adaptações em alvenaria
+              tradicional para receber com firmeza as estruturas em madeira.</p>
+          </div>
+          <div class="flex flex-col gap-3 group">
+            <div class="text-primary mb-1 transition-transform duration-300 group-hover:-translate-y-1">
+              <!-- Paint Roller Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+                <rect x="2" y="2" width="16" height="6" rx="2" />
+                <path d="M18 5h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2" />
+                <path d="M14 11v8a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-4" />
+              </svg>
+            </div>
+            <h4 class="font-display text-lg text-foreground font-semibold">Pintura & Acabamentos</h4>
+            <p class="text-muted text-xs leading-relaxed">Pintura interna e externa de alta precisão. Tratamento e
+              acabamento rigoroso para paredes, tetos e detalhes perfeitos.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 3 — PORTFÓLIO
+       ═══════════════════════════════════════════════════ -->
+  <section id="portfolio" class="py-28 px-6 md:px-12" style="background-color: rgba(42,31,20,0.35);">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Header -->
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-14">
+        <div>
+          <span class="inline-flex items-center gap-3 text-primary text-xs font-sans uppercase tracking-[0.2em] mb-4">
+            <span class="w-6 h-px bg-primary/50"></span>
+            Obras Realizadas
+          </span>
+          <h2 class="font-display text-3xl md:text-4xl lg:text-5xl text-foreground font-semibold leading-tight">
+            Cada Projeto,<br class="hidden md:block" /> Uma História de Ofício
+          </h2>
+        </div>
+        <a href="#contacto"
+          class="mt-6 sm:mt-0 inline-flex items-center gap-2 text-primary text-xs uppercase tracking-widest font-sans hover:gap-4 transition-all duration-300 group shrink-0">
+          Pedir orçamento
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" style="grid-auto-rows: 300px;">
+
+        <!-- Item 1 — grande (2 cols no desktop) -->
+        <article class="relative group overflow-hidden craft-surface lg:col-span-2">
+          <img
+            src="assets/imagens/portfolio/portfolio-01-habitacao-madeira-concluida.jpg"
+            alt="Construção de Habitação em Madeira"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            loading="lazy" />
+          <!-- Overlay -->
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-background/95 via-background/30 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-400">
+          </div>
+          <!-- Caption -->
+          <div
+            class="absolute bottom-0 left-0 right-0 p-7 translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400 ease-out">
+            <p class="text-primary text-xs uppercase tracking-widest font-sans mb-1">Projeto Chave-na-Mão</p>
+            <h3 class="font-display text-xl text-foreground font-semibold">Construção de Habitação em Madeira</h3>
+          </div>
+          <!-- Always visible corner label -->
+          <div class="absolute top-5 left-5 craft-surface px-3 py-1.5">
+            <span class="text-primary text-xs uppercase tracking-widest font-sans font-semibold">Obra Concluída</span>
+          </div>
+        </article>
+
+        <!-- Item 2 -->
+        <article class="relative group overflow-hidden craft-surface">
+          <img src="assets/imagens/portfolio/portfolio-02-cobertura-e-alpendre.jpg"
+            alt="Acabamentos Exteriores e Cobertura"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            loading="lazy" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-400">
+          </div>
+          <div
+            class="absolute bottom-0 left-0 right-0 p-6 translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400 ease-out">
+            <p class="text-primary text-xs uppercase tracking-widest font-sans mb-1">Detalhes e Acabamentos</p>
+            <h3 class="font-display text-lg text-foreground font-semibold">Cobertura e Alpendre</h3>
+          </div>
+        </article>
+
+        <!-- Item 3 -->
+        <article class="relative group overflow-hidden craft-surface">
+          <img src="assets/imagens/portfolio/portfolio-03-anexo-madeira-caixilharia.jpg"
+            alt="Anexo em Madeira Tratada"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            loading="lazy" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-400">
+          </div>
+          <div
+            class="absolute bottom-0 left-0 right-0 p-6 translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400 ease-out">
+            <p class="text-primary text-xs uppercase tracking-widest font-sans mb-1">Estruturas em Madeira</p>
+            <h3 class="font-display text-lg text-foreground font-semibold">Anexo com Caixilharia</h3>
+          </div>
+        </article>
+
+        <!-- Item 4 -->
+        <article class="relative group overflow-hidden craft-surface">
+          <img src="assets/imagens/portfolio/portfolio-04-estrutura-encaixe-madeira.jpg"
+            alt="Processo Construtivo e Estruturas"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            loading="lazy" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-400">
+          </div>
+          <div
+            class="absolute bottom-0 left-0 right-0 p-6 translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400 ease-out">
+            <p class="text-primary text-xs uppercase tracking-widest font-sans mb-1">Processo Construtivo</p>
+            <h3 class="font-display text-lg text-foreground font-semibold">Sistema de Encaixe e Estrutura</h3>
+          </div>
+          <div class="absolute top-5 left-5 craft-surface px-3 py-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-400">
+            <span class="text-muted text-xs uppercase tracking-widest font-sans">Em obra</span>
+          </div>
+        </article>
+
+        <!-- Item 5 -->
+        <article class="relative group overflow-hidden craft-surface">
+          <img src="assets/imagens/portfolio/portfolio-05-fundacoes-e-alvenaria.jpg"
+            alt="Preparação de Laje e Fundações"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            loading="lazy" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-400">
+          </div>
+          <div
+            class="absolute bottom-0 left-0 right-0 p-6 translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-400 ease-out">
+            <p class="text-primary text-xs uppercase tracking-widest font-sans mb-1">Obras de Alvenaria</p>
+            <h3 class="font-display text-lg text-foreground font-semibold">Preparação de Laje e Fundações</h3>
+          </div>
+          <div class="absolute top-5 left-5 craft-surface px-3 py-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-400">
+            <span class="text-muted text-xs uppercase tracking-widest font-sans">Em obra</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 4 — NÚMEROS / CREDIBILIDADE
+       ═══════════════════════════════════════════════════ -->
+  <section id="numeros" class="relative py-24 overflow-hidden"
+    style="border-top: 1px solid rgba(184,168,152,0.12); border-bottom: 1px solid rgba(184,168,152,0.12);">
+
+    <!-- Radial glow background accent -->
+    <div class="absolute inset-0 pointer-events-none"
+      style="background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,147,58,0.06) 0%, transparent 70%);"></div>
+
+    <!-- Horizontal line accents -->
+    <div
+      class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16 bg-gradient-to-b from-transparent to-primary/30 pointer-events-none">
+    </div>
+    <div
+      class="absolute bottom-0 left-1/2 -translate-x-1/2 w-px h-16 bg-gradient-to-t from-transparent to-primary/30 pointer-events-none">
+    </div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-6 md:px-12">
+
+      <!-- Section label -->
+      <p class="text-center text-primary text-xs font-sans uppercase tracking-[0.2em] mb-16">
+        <span class="inline-flex items-center gap-3">
+          <span class="w-6 h-px bg-primary/50"></span>
+          Experiência & Compromisso
+          <span class="w-6 h-px bg-primary/50"></span>
+        </span>
+      </p>
+
+      <!-- Metrics grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-6 text-center">
+
+        <!-- Metric 1 -->
+        <div class="flex flex-col items-center">
+          <div class="relative mb-4">
+            <span class="font-display text-5xl md:text-6xl text-primary font-semibold leading-none"
+              data-count-target="30" data-count-suffix="+">30+</span>
+            <div class="absolute -top-2 -right-3 w-1.5 h-1.5 bg-primary/60"></div>
+          </div>
+          <div class="w-8 h-px bg-primary/30 mb-4"></div>
+          <p class="text-muted text-xs uppercase tracking-widest font-sans leading-relaxed">Anos de Ligação<br />à
+            Madeira</p>
+        </div>
+
+        <!-- Metric 2 -->
+        <div class="flex flex-col items-center">
+          <div class="relative mb-4">
+            <span class="font-display text-5xl md:text-6xl text-primary font-semibold leading-none"
+              data-count-target="100" data-count-suffix='<span class="text-3xl">%</span>'>100<span
+                class="text-3xl">%</span></span>
+            <div class="absolute -top-2 -right-3 w-1.5 h-1.5 bg-primary/60"></div>
+          </div>
+          <div class="w-8 h-px bg-primary/30 mb-4"></div>
+          <p class="text-muted text-xs uppercase tracking-widest font-sans leading-relaxed">Foco em<br />Carpintaria</p>
+        </div>
+
+        <!-- Metric 3 -->
+        <div class="flex flex-col items-center">
+          <div class="relative mb-4">
+            <span class="font-display text-4xl md:text-5xl text-primary font-semibold leading-none">Portugal</span>
+            <div class="absolute -top-2 -right-3 w-1.5 h-1.5 bg-primary/60"></div>
+          </div>
+          <div class="w-8 h-px bg-primary/30 mb-4"></div>
+          <p class="text-muted text-xs uppercase tracking-widest font-sans leading-relaxed">Cobertura<br />Geográfica
+          </p>
+        </div>
+
+        <!-- Metric 4 -->
+        <div class="flex flex-col items-center">
+          <div class="relative mb-4">
+            <span class="font-display text-4xl md:text-5xl text-primary font-semibold leading-none">Premium</span>
+            <div class="absolute -top-2 -right-3 w-1.5 h-1.5 bg-primary/60"></div>
+          </div>
+          <div class="w-8 h-px bg-primary/30 mb-4"></div>
+          <p class="text-muted text-xs uppercase tracking-widest font-sans leading-relaxed">Qualidade de<br />Acabamento
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Quote strip -->
+      <blockquote class="mt-20 text-center max-w-2xl mx-auto">
+        <p class="font-display text-xl md:text-2xl text-foreground/70 italic font-normal leading-relaxed">
+          "A madeira não perdoa o descuido.<br />É por isso que cada encaixe é tratado como o último."
+        </p>
+        <footer class="mt-5 text-primary text-xs uppercase tracking-widest font-sans">— Nuno Filipe Venda</footer>
+      </blockquote>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 5 — SOBRE O NUNO
+       ═══════════════════════════════════════════════════ -->
+  <section id="sobre" class="py-28 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-24 items-center">
+
+        <!-- Image Column -->
+        <div class="relative">
+          <!-- Main image -->
+          <div class="relative craft-surface p-2 overflow-hidden" style="aspect-ratio: 4/5;">
+            <img
+              src="assets/imagens/sobre-nos-carpinteiro-madeira.jpg"
+              alt="Nuno Filipe Venda — carpinteiro especializado em casas de madeira"
+              class="w-full h-full object-cover object-center" loading="lazy" />
+            <!-- Inner gradient for depth -->
+            <div class="absolute inset-0 pointer-events-none"
+              style="background: linear-gradient(to top, rgba(28,43,30,0.4) 0%, transparent 50%);"></div>
+          </div>
+
+          <!-- Decorative corner frame -->
+          <div class="absolute -bottom-5 -right-5 w-28 h-28 pointer-events-none"
+            style="border: 1px solid rgba(201,147,58,0.25);"></div>
+          <div class="absolute -bottom-8 -right-8 w-28 h-28 pointer-events-none"
+            style="border: 1px solid rgba(201,147,58,0.10);"></div>
+
+          <!-- Floating badge -->
+          <div
+            class="absolute top-6 -right-4 craft-surface bg-background/90 backdrop-blur-md px-4 py-3 hidden lg:flex flex-col items-center text-center shadow-2xl"
+            style="min-width: 100px;">
+            <span class="font-display text-2xl text-primary font-semibold leading-none">30+</span>
+            <span class="text-muted text-xs uppercase tracking-wider font-sans mt-1 leading-tight">anos
+              de<br />carpintaria</span>
+          </div>
+        </div>
+
+        <!-- Text Column -->
+        <div class="">
+
+          <!-- Label -->
+          <span class="inline-flex items-center gap-3 text-primary text-xs font-sans uppercase tracking-[0.2em] mb-6">
+            <span class="w-6 h-px bg-primary/50"></span>
+            O Artesão
+          </span>
+
+          <!-- Heading -->
+          <h2 class="font-display text-3xl md:text-4xl xl:text-5xl text-foreground font-semibold leading-[1.1] mb-8">
+            A madeira não<br />se constrói.<br /><em class="not-italic text-primary">Trabalha-se.</em>
+          </h2>
+
+          <!-- Body paragraphs -->
+          <p class="text-muted leading-relaxed mb-5 text-base">
+            Com uma formação profissional em carpintaria iniciada nos anos 90, o Nuno não é um construtor que trabalha
+            com madeira — é um <strong class="text-foreground/80 font-medium">carpinteiro de ofício</strong> que
+            constrói habitações. A diferença está na mão, no olho e em décadas de respeito pelo material.
+          </p>
+          <p class="text-muted leading-relaxed mb-5 text-base">
+            Nos últimos anos especializou-se em construção de casas de madeira e estruturas em timber frame de média e
+            grande dimensão, percorrendo Portugal de norte a sul. Cada obra é executada com presença constante, sem
+            subcontratação do trabalho de carpintaria.
+          </p>
+          <p class="text-muted leading-relaxed mb-10 text-base">
+            Com base em Santarém — centro geográfico de Portugal — aceita projetos em todo o território continental,
+            reduzindo tempos de deslocação e mantendo uma relação próxima com cada cliente.
+          </p>
+
+          <!-- Signature -->
+          <div class="flex items-center gap-5 mb-10">
+            <div class="w-10 h-px bg-primary/40"></div>
+            <span class="font-display text-2xl text-foreground italic">Nuno Filipe Venda</span>
+          </div>
+
+          <!-- Highlights strip -->
+          <div class="grid grid-cols-3 gap-4">
+            <div class="craft-surface px-4 py-4 text-center">
+              <p class="font-display text-lg text-primary font-semibold mb-0.5">1990</p>
+              <p class="text-muted text-xs uppercase tracking-wider font-sans">Formação<br />Profissional</p>
+            </div>
+            <div class="craft-surface px-4 py-4 text-center">
+              <p class="font-display text-lg text-primary font-semibold mb-0.5">5 anos</p>
+              <p class="text-muted text-xs uppercase tracking-wider font-sans">Carpinteiro<br />Profissional</p>
+            </div>
+            <div class="craft-surface px-4 py-4 text-center">
+              <p class="font-display text-lg text-primary font-semibold mb-0.5">Nacional</p>
+              <p class="text-muted text-xs uppercase tracking-wider font-sans">Projetos<br />Executados</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 6 — PROCESSO
+       ═══════════════════════════════════════════════════ -->
+  <section id="processo" class="py-28 px-6 md:px-12" style="background-color: rgba(42,31,20,0.35);">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Header -->
+      <div class="flex flex-col items-center text-center mb-20">
+        <span class="inline-flex items-center gap-3 text-primary text-xs font-sans uppercase tracking-[0.2em] mb-5">
+          <span class="w-6 h-px bg-primary/50"></span>
+          Como Trabalhamos
+          <span class="w-6 h-px bg-primary/50"></span>
+        </span>
+        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl text-foreground font-semibold leading-tight">
+          Do Primeiro Contacto<br />à Última Viga
+        </h2>
+        <p class="text-muted text-base max-w-lg mt-4 leading-relaxed">
+          Um processo direto, transparente e sem intermediários — do orçamento à entrega da obra.
+        </p>
+      </div>
+
+      <!-- Steps -->
+      <div class="relative">
+
+        <!-- Connector line (desktop only) -->
+        <div class="hidden md:block absolute top-[3.5rem] left-[calc(16.66%+2rem)] right-[calc(16.66%+2rem)] h-px"
+          style="background: linear-gradient(to right, transparent, rgba(201,147,58,0.25) 20%, rgba(201,147,58,0.25) 80%, transparent);">
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+
+          <!-- Step 1 -->
+          <div class="flex flex-col items-center text-center">
+            <!-- Number bubble -->
+            <div class="relative mb-8 z-10">
+              <div class="w-28 h-28 craft-surface flex flex-col items-center justify-center"
+                style="background: linear-gradient(0deg, rgba(201,147,58,0.05), rgba(201,147,58,0.05)), #1C2B1E;">
+                <!-- Step number -->
+                <span
+                  class="font-display text-4xl text-primary font-semibold leading-none relative -translate-y-1">1</span>
+              </div>
+              <!-- Pulse ring -->
+              <div class="absolute inset-0 border border-primary/20 scale-110 pointer-events-none animate-ping"
+                style="animation-duration: 3s; animation-delay: 0s;"></div>
+            </div>
+            <!-- Icon -->
+            <div class="text-primary mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5" stroke-linecap="square" aria-hidden="true">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              </svg>
+            </div>
+            <h3 class="font-sans text-base text-foreground font-semibold mb-3 uppercase tracking-wide">Contacto & Ideia
+            </h3>
+            <p class="text-muted text-sm leading-relaxed max-w-xs mx-auto">
+              Apresente o seu projeto, as dimensões pretendidas e o terreno. Avaliamos a viabilidade técnica sem
+              compromisso.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="flex flex-col items-center text-center">
+            <!-- Number bubble -->
+            <div class="relative mb-8 z-10">
+              <div class="w-28 h-28 craft-surface flex flex-col items-center justify-center"
+                style="background: linear-gradient(0deg, rgba(201,147,58,0.05), rgba(201,147,58,0.05)), #1C2B1E;">
+                <span
+                  class="font-display text-4xl text-primary font-semibold leading-none relative -translate-y-1">2</span>
+              </div>
+              <div class="absolute inset-0 border border-primary/20 scale-110 pointer-events-none animate-ping"
+                style="animation-duration: 3s; animation-delay: 0.5s;"></div>
+            </div>
+            <!-- Icon -->
+            <div class="text-primary mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5" stroke-linecap="square" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+                <polyline points="10 9 9 9 8 9" />
+              </svg>
+            </div>
+            <h3 class="font-sans text-base text-foreground font-semibold mb-3 uppercase tracking-wide">Orçamento
+              Transparente</h3>
+            <p class="text-muted text-sm leading-relaxed max-w-xs mx-auto">
+              Proposta detalhada com especificações de materiais, prazos e condições. Sem surpresas a meio da obra.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="flex flex-col items-center text-center">
+            <!-- Number bubble — highlighted -->
+            <div class="relative mb-8 z-10">
+              <div class="w-28 h-28 flex flex-col items-center justify-center"
+                style="background: linear-gradient(0deg, rgba(201,147,58,0.12), rgba(201,147,58,0.12)), #1C2B1E; border: 1px solid rgba(201,147,58,0.35);">
+                <span
+                  class="font-display text-4xl text-primary font-semibold leading-none relative -translate-y-1">3</span>
+              </div>
+              <div class="absolute inset-0 border border-primary/30 scale-110 pointer-events-none animate-ping"
+                style="animation-duration: 3s; animation-delay: 1s;"></div>
+            </div>
+            <!-- Icon -->
+            <div class="text-primary mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5" stroke-linecap="square" aria-hidden="true">
+                <path d="M15 12l-8.5 8.5a2.12 2.12 0 0 1-3-3L12 9" />
+                <path d="M17.64 6.36a4 4 0 0 1 0 5.66l-1.3 1.3-5.66-5.66 1.3-1.3a4 4 0 0 1 5.66 0z" />
+              </svg>
+            </div>
+            <h3 class="font-sans text-base text-foreground font-semibold mb-3 uppercase tracking-wide">Obra
+              Especializada</h3>
+            <p class="text-muted text-sm leading-relaxed max-w-xs mx-auto">
+              Construção meticulosa com presença constante do mestre carpinteiro até ao último detalhe do acabamento.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Bottom CTA strip -->
+      <div class="mt-20 craft-surface p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <p class="font-display text-xl text-foreground mb-1">Pronto para começar o seu projeto?</p>
+          <p class="text-muted text-sm">Orçamento gratuito e sem compromisso. Resposta em 48 horas.</p>
+        </div>
+        <a href="#contacto" class="btn-primary whitespace-nowrap shrink-0">Pedir Orçamento Agora</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       SECTION 7 — CONTACTO
+       ═══════════════════════════════════════════════════ -->
+  <section id="contacto" class="py-28 px-6 md:px-12">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Header -->
+      <div class="flex flex-col items-center text-center mb-16">
+        <span class="inline-flex items-center gap-3 text-primary text-xs font-sans uppercase tracking-[0.2em] mb-5">
+          <span class="w-6 h-px bg-primary/50"></span>
+          Fale Connosco
+          <span class="w-6 h-px bg-primary/50"></span>
+        </span>
+        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl text-foreground font-semibold leading-tight">
+          Vamos Construir<br />a Sua Visão
+        </h2>
+        <p class="text-muted text-base max-w-md mt-4 leading-relaxed">
+          Disponível para projetos em todo o Portugal Continental. Orçamento gratuito e sem compromisso.
+        </p>
+      </div>
+
+      <!-- Card split -->
+      <div class="craft-surface overflow-hidden flex flex-col lg:flex-row">
+
+        <!-- Info Panel -->
+        <div class="p-10 lg:p-14 lg:w-2/5 flex flex-col justify-between" style="background-color: rgba(42,31,20,0.7);">
+          <div>
+            <h3 class="font-display text-2xl text-foreground mb-2">NV Madeira</h3>
+            <p class="text-muted text-sm mb-10 leading-relaxed">Construção especializada em timber frame e madeira
+              natural. Santarém — Portugal.</p>
+
+            <!-- Contact items -->
+            <div class="flex flex-col gap-6">
+
+              <div class="flex items-start gap-4">
+                <div class="text-primary mt-0.5 shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="square" aria-hidden="true">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.24h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.29 6.29l.82-.73a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-foreground text-sm font-medium mb-0.5">Telefone</p>
+                  <a href="tel:+351000000000"
+                    class="text-muted text-sm hover:text-primary transition-colors duration-200">+351 [A CONFIRMAR]</a>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="text-primary mt-0.5 shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="square" aria-hidden="true">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-foreground text-sm font-medium mb-0.5">Email</p>
+                  <a href="mailto:info@nvmadeira.pt"
+                    class="text-muted text-sm hover:text-primary transition-colors duration-200">[A CONFIRMAR]</a>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="text-primary mt-0.5 shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="square" aria-hidden="true">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-foreground text-sm font-medium mb-0.5">Localização</p>
+                  <p class="text-muted text-sm">Sede em Santarém<br />Atuação em Portugal Continental</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- WhatsApp CTA -->
+          <div class="mt-12">
+            <a href="https://wa.me/351000000000" target="_blank" rel="noopener"
+              class="inline-flex items-center gap-3 text-sm font-sans font-medium text-foreground hover:text-primary transition-colors duration-200">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
+                class="text-primary" aria-hidden="true">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+              </svg>
+              Contactar via WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <!-- Form Panel -->
+        <div class="p-10 lg:p-14 lg:w-3/5">
+          <form id="contact-form" class="grid grid-cols-1 sm:grid-cols-2 gap-5" novalidate>
+
+            <div class="flex flex-col gap-1.5">
+              <label for="nome" class="text-xs text-muted uppercase tracking-widest font-sans">Nome *</label>
+              <input type="text" id="nome" name="nome" required placeholder="O seu nome"
+                class="bg-background border border-white/10 px-4 py-3 text-foreground text-sm font-sans placeholder:text-muted/50 focus:outline-none focus:border-primary/60 transition-colors duration-200" />
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <label for="telemovel" class="text-xs text-muted uppercase tracking-widest font-sans">Telemóvel *</label>
+              <input type="tel" id="telemovel" name="telemovel" required placeholder="+351 9XX XXX XXX"
+                class="bg-background border border-white/10 px-4 py-3 text-foreground text-sm font-sans placeholder:text-muted/50 focus:outline-none focus:border-primary/60 transition-colors duration-200" />
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <label for="localizacao" class="text-xs text-muted uppercase tracking-widest font-sans">Localização da
+                Obra</label>
+              <input type="text" id="localizacao" name="localizacao" placeholder="Concelho / Distrito"
+                class="bg-background border border-white/10 px-4 py-3 text-foreground text-sm font-sans placeholder:text-muted/50 focus:outline-none focus:border-primary/60 transition-colors duration-200" />
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <label for="dimensao" class="text-xs text-muted uppercase tracking-widest font-sans">Dimensão
+                Estimada</label>
+              <input type="text" id="dimensao" name="dimensao" placeholder="Ex: 150m² / Não sei ainda"
+                class="bg-background border border-white/10 px-4 py-3 text-foreground text-sm font-sans placeholder:text-muted/50 focus:outline-none focus:border-primary/60 transition-colors duration-200" />
+            </div>
+
+            <div class="sm:col-span-2 flex flex-col gap-1.5">
+              <label for="mensagem" class="text-xs text-muted uppercase tracking-widest font-sans">Detalhes do
+                Projeto</label>
+              <textarea id="mensagem" name="mensagem" rows="5"
+                placeholder="Descreva o seu projeto, tipo de construção, prazo pretendido..."
+                class="bg-background border border-white/10 px-4 py-3 text-foreground text-sm font-sans placeholder:text-muted/50 focus:outline-none focus:border-primary/60 transition-colors duration-200 resize-none"></textarea>
+            </div>
+
+            <div class="sm:col-span-2 mt-2">
+              <button type="submit" id="submit-btn" class="btn-primary w-full text-center">
+                Solicitar Orçamento Gratuito
+              </button>
+              <p class="text-muted text-xs font-sans mt-3 text-center">Resposta em até 48 horas. Os seus dados são
+                confidenciais.</p>
+            </div>
+
+            <!-- Success message (hidden by default) -->
+            <div id="form-success" class="sm:col-span-2 hidden">
+              <div class="craft-surface px-6 py-4 flex items-center gap-3" style="border-color: rgba(201,147,58,0.4);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="#C9933A" stroke-width="1.5" stroke-linecap="square">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <p class="text-sm text-foreground font-sans">Mensagem enviada! Entraremos em contacto brevemente.</p>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════ -->
+  <footer class="py-12 px-6 md:px-12" style="border-top: 1px solid rgba(184,168,152,0.1);">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Top row -->
+      <div class="flex flex-col md:flex-row items-center md:items-start justify-between gap-8 mb-10">
+
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3 group" aria-label="NV Madeira">
+          <div class="w-9 h-9 border border-primary/50 flex items-center justify-center">
+            <span class="font-display text-primary font-semibold text-sm leading-none">NV</span>
+          </div>
+          <span class="font-display text-foreground text-lg tracking-wide">
+            NV <span class="text-primary">Madeira</span>
+          </span>
+        </a>
+
+        <!-- Footer nav -->
+        <nav class="flex flex-wrap justify-center gap-x-8 gap-y-2" aria-label="Navegação rodapé">
+          <a href="#servicos"
+            class="text-muted text-xs uppercase tracking-widest hover:text-foreground transition-colors duration-200 font-sans">Serviços</a>
+          <a href="#portfolio"
+            class="text-muted text-xs uppercase tracking-widest hover:text-foreground transition-colors duration-200 font-sans">Portfólio</a>
+          <a href="#sobre"
+            class="text-muted text-xs uppercase tracking-widest hover:text-foreground transition-colors duration-200 font-sans">Sobre</a>
+          <a href="#processo"
+            class="text-muted text-xs uppercase tracking-widest hover:text-foreground transition-colors duration-200 font-sans">Processo</a>
+          <a href="#contacto"
+            class="text-muted text-xs uppercase tracking-widest hover:text-foreground transition-colors duration-200 font-sans">Contacto</a>
+        </nav>
+
+      </div>
+
+      <!-- Divider -->
+      <div class="h-px w-full mb-8" style="background: rgba(184,168,152,0.1);"></div>
+
+      <!-- Bottom row -->
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-sans text-muted">
+        <p>© 2026 NV Madeira — Nuno Filipe Venda. Construção e Carpintaria em Madeira.</p>
+        <p>Santarém, Portugal · Atuação Nacional</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════
+       SCRIPTS (final do body)
+       ═══════════════════════════════════════════════════ -->
+  <!-- Animation Injector — GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    // ─── Navbar scroll state
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // ─── Mobile menu toggle
+    const toggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    toggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      mobileMenu.classList.toggle('flex');
+    });
+    // Close on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+      });
+    });
+
+    // ─── Animation Injector — GSAP ──────────────────────────
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Helper function for responsive start triggers
+    const getStart = () => window.innerWidth < 768 ? "top 60%" : "top 80%";
+
+    // ─── Secção 1: Navbar
+    gsap.from("#navbar", { y: -20, opacity: 0, duration: 1, ease: "power3.out" });
+
+    // ─── Secção 2: Hero
+    const heroTl = gsap.timeline();
+    heroTl.from("#hero img.object-cover", { scale: 1.1, opacity: 0, duration: 1.5, ease: "power2.out" }, 0)
+      .from("#hero .text-primary.uppercase", { opacity: 0, y: 20, duration: 0.8, ease: "power3.out" }, 0.5)
+      .from("#hero h1", { opacity: 0, y: 30, duration: 1, ease: "power3.out" }, 0.7)
+      .from("#hero p.text-muted", { opacity: 0, y: 20, duration: 0.8, ease: "power3.out" }, 0.9)
+      .from("#hero .btn-primary, #hero .btn-secondary", { opacity: 0, y: 20, stagger: 0.15, duration: 0.8, ease: "power3.out", clearProps: "all" }, 1.1)
+
+    // ─── Secção 3: Serviços
+    gsap.from("#servicos .flex-col.items-center.text-center", { scrollTrigger: { trigger: "#servicos", start: getStart }, opacity: 0, y: 30, duration: 0.8, ease: "power3.out" });
+
+    gsap.set("#servicos article.craft-surface", { opacity: 0, y: 40 });
+    ScrollTrigger.batch("#servicos article.craft-surface", {
+      start: getStart,
+      onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, stagger: 0.15, duration: 0.8, ease: "power3.out", clearProps: "all" })
+    });
+
+    gsap.from("#servicos-complementares", { scrollTrigger: { trigger: "#servicos-complementares", start: getStart }, opacity: 0, y: 30, duration: 0.8, ease: "power3.out", clearProps: "all" });
+
+    // ─── Secção 4: Portfólio
+    gsap.from("#portfolio .flex.flex-col.sm\\:flex-row", { scrollTrigger: { trigger: "#portfolio", start: getStart }, opacity: 0, y: 30, duration: 0.8, ease: "power3.out" });
+
+    gsap.set("#portfolio article", { opacity: 0, y: 40 });
+    ScrollTrigger.batch("#portfolio article", {
+      start: getStart,
+      onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, stagger: 0.15, duration: 0.8, ease: "power3.out", clearProps: "all" })
+    });
+
+    gsap.from("#portfolio > div > p.text-center", { scrollTrigger: { trigger: "#portfolio > div > p.text-center", start: () => window.innerWidth < 768 ? "top 75%" : "top 85%" }, opacity: 0, duration: 0.8 });
+
+    // ─── Secção 5: Números
+    gsap.from("#numeros p.text-center.text-primary", { scrollTrigger: { trigger: "#numeros", start: getStart }, opacity: 0, y: 20, duration: 0.8, ease: "power3.out" });
+
+    gsap.set("#numeros .grid > div", { opacity: 0, scale: 0.9 });
+    ScrollTrigger.batch("#numeros .grid > div", {
+      start: getStart,
+      onEnter: batch => gsap.to(batch, { opacity: 1, scale: 1, stagger: 0.15, duration: 0.8, ease: "back.out(1.2)", clearProps: "all" })
+    });
+
+    document.querySelectorAll("[data-count-target]").forEach(target => {
+      const finalVal = parseInt(target.getAttribute("data-count-target"));
+      const suffix = target.getAttribute("data-count-suffix") || "";
+      const obj = { val: 0 };
+      gsap.to(obj, {
+        scrollTrigger: { trigger: target, start: getStart },
+        val: finalVal,
+        duration: 2,
+        ease: "power2.out",
+        onUpdate: () => target.innerHTML = Math.ceil(obj.val) + suffix
+      });
+    });
+
+    gsap.from("#numeros blockquote", { scrollTrigger: { trigger: "#numeros blockquote", start: getStart }, opacity: 0, y: 30, duration: 0.8, ease: "power3.out" });
+
+    // ─── Secção 6: Sobre
+    gsap.from("#sobre > div > .grid > div:first-child", { scrollTrigger: { trigger: "#sobre > div > .grid", start: getStart }, opacity: 0, x: -40, duration: 1, ease: "power3.out" });
+    gsap.from("#sobre .absolute.top-6.-right-4", { scrollTrigger: { trigger: "#sobre > div > .grid", start: getStart }, opacity: 0, scale: 0.5, duration: 0.8, delay: 0.5, ease: "back.out(1.5)" });
+
+    // Animate Text Column elements stagger
+    gsap.from("#sobre > div > .grid > div:last-child > *", {
+      scrollTrigger: { trigger: "#sobre > div > .grid > div:last-child", start: getStart },
+      opacity: 0, y: 20, stagger: 0.15, duration: 0.8, ease: "power3.out"
+    });
+
+    // ─── Secção 7: Processo
+    gsap.from("#processo .flex-col.items-center.text-center.mb-20", { scrollTrigger: { trigger: "#processo", start: getStart }, opacity: 0, y: 30, duration: 0.8, ease: "power3.out" });
+    gsap.from("#processo .absolute.top-\\[3\\.5rem\\]", { scrollTrigger: { trigger: "#processo .grid", start: getStart }, scaleX: 0, transformOrigin: "left center", duration: 1, ease: "power3.inOut" });
+
+    gsap.set("#processo .grid > div", { opacity: 0, y: 30 });
+    ScrollTrigger.batch("#processo .grid > div", {
+      start: getStart,
+      onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, stagger: 0.2, duration: 0.8, ease: "power3.out", clearProps: "all" })
+    });
+
+    gsap.from("#processo .mt-20.craft-surface", { scrollTrigger: { trigger: "#processo .mt-20.craft-surface", start: getStart }, opacity: 0, y: 30, duration: 0.8, ease: "power3.out" });
+
+    // ─── Secção 8: Contacto
+    gsap.from("#contacto > div > .flex-col.items-center", { scrollTrigger: { trigger: "#contacto", start: getStart }, opacity: 0, y: 30, duration: 0.8, ease: "power3.out" });
+    gsap.from("#contacto .craft-surface.overflow-hidden > div:first-child", { scrollTrigger: { trigger: "#contacto .craft-surface.overflow-hidden", start: getStart }, opacity: 0, x: -40, duration: 0.8, ease: "power3.out" });
+    gsap.from("#contacto .craft-surface.overflow-hidden > div:last-child", { scrollTrigger: { trigger: "#contacto .craft-surface.overflow-hidden", start: getStart }, opacity: 0, x: 40, duration: 0.8, delay: 0.2, ease: "power3.out", clearProps: "all" });
+
+    // ─── Secção 9: Footer
+    gsap.from("footer > div > div", { scrollTrigger: { trigger: "footer", start: "top 85%" }, opacity: 0, y: 20, stagger: 0.2, duration: 0.8, ease: "power3.out" });
+
+    // ─── Contact form (demo handler)
+    const contactForm = document.getElementById('contact-form');
+    const formSuccess = document.getElementById('form-success');
+    const submitBtn = document.getElementById('submit-btn');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nome = document.getElementById('nome').value.trim();
+      const tel = document.getElementById('telemovel').value.trim();
+      if (!nome || !tel) {
+        [document.getElementById('nome'), document.getElementById('telemovel')].forEach(input => {
+          if (!input.value.trim()) {
+            input.style.borderColor = 'rgba(201,147,58,0.7)';
+            input.addEventListener('input', () => input.style.borderColor = '', { once: true });
+          }
+        });
+        return;
+      }
+      submitBtn.textContent = 'A enviar...';
+      submitBtn.style.opacity = '0.7';
+      submitBtn.disabled = true;
+      setTimeout(() => {
+        contactForm.querySelectorAll('input, textarea').forEach(el => el.value = '');
+        formSuccess.classList.remove('hidden');
+        submitBtn.textContent = 'Solicitar Orçamento Gratuito';
+        submitBtn.style.opacity = '1';
+        submitBtn.disabled = false;
+        setTimeout(() => formSuccess.classList.add('hidden'), 5000);
+      }, 1200);
+    });
+  </script>
+
+</body>
+
+</html>
+
