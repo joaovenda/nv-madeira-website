@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://joaovenda.github.io/nv-madeira-website/sitemap.xml
