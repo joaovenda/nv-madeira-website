@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NV Madeira — Casas de Madeira, Decks e Velaturas | Portugal</title>
   <meta name="description"
-    content="Construção de casas de madeira, decks e exteriores e velaturas em Portugal. Nuno Filipe Venda — especialista em timber frame com formação técnica. Orçamento gratuito." />
+    content="Construção de casas de madeira, decks e exteriores e velaturas em Portugal. Nuno Filipe Venda — especialista em wood frame modular com formação técnica. Orçamento gratuito." />
 
   <!-- Canonical -->
   <link rel="canonical" href="https://joaovenda.github.io/nv-madeira-website/" />
@@ -17,7 +17,7 @@
   <meta property="og:url" content="https://joaovenda.github.io/nv-madeira-website/" />
   <meta property="og:title" content="NV Madeira — Casas de Madeira, Decks e Velaturas" />
   <meta property="og:description"
-    content="Construção de casas de madeira, decks e exteriores e velaturas em Portugal. Nuno Filipe Venda — especialista em timber frame. Orçamento gratuito." />
+    content="Construção de casas de madeira, decks e exteriores e velaturas em Portugal. Nuno Filipe Venda — especialista em construção modular em madeira. Orçamento gratuito." />
   <meta property="og:image"
     content="https://joaovenda.github.io/nv-madeira-website/assets/imagens/portfolio/portfolio-01-habitacao-madeira-concluida.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -30,10 +30,10 @@
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "NV Madeira",
-    "description": "Construção de casas de madeira em timber frame, decks e exteriores, e velaturas de madeira em Portugal. Especialista com formação técnica em carpintaria.",
+    "description": "Construção de casas de madeira em sistema wood frame modular, decks e exteriores, e velaturas de madeira em Portugal. Especialista com formação técnica em carpintaria.",
     "url": "https://joaovenda.github.io/nv-madeira-website/",
     "telephone": "+351964344112",
-    "email": "nunovenda@gmail.com",
+    "email": "venda.nuno@gmail.com",
     "founder": {
       "@type": "Person",
       "name": "Nuno Filipe Oliveira Venda"
@@ -56,9 +56,9 @@
       "@type": "OfferCatalog",
       "name": "Serviços NV Madeira",
       "itemListElement": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Casas de Madeira", "description": "Construção de habitações em timber frame e madeira maciça" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Casas de Madeira", "description": "Construção de habitações em wood frame modular com pinho nórdico e madeira de qualidade" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Decks e Exteriores", "description": "Decks, pérgolas e estruturas exteriores em madeira tratada" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Velaturas e Tratamentos", "description": "Velatura de madeira nova e envelhecida, proteção UV e hidrofugante" } }
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Velaturas", "description": "Velatura de madeira nova e envelhecida, proteção UV e hidrofugante" } }
       ]
     },
     "priceRange": "800€ – 1500€/m²",
@@ -251,7 +251,23 @@
       background: rgba(201, 147, 58, 0.06);
       transform: translateY(-2px);
     }
+  /* ─── Hero parallax ────────────────────────────── */
+    #home-hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 110%; /* extra para o parallax viajar */
+      object-fit: cover;
+      object-position: center;
+      transform-origin: center top;
+      will-change: transform;
+      top: -5%; /* centra o excesso */
+    }
   </style>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 
 <body class="bg-background text-foreground font-sans antialiased">
@@ -312,14 +328,14 @@
   <section id="hero" class="relative min-h-screen flex items-center justify-center px-6 md:px-12 overflow-hidden">
 
     <!-- Background image -->
-    <div class="absolute inset-0 z-0">
-      <img src="assets/imagens/hero-fundo-madeira-floresta.jpg"
-        alt="Casa de madeira construída em timber frame em Portugal" class="w-full h-full object-cover object-center" />
+    <div class="absolute inset-0 z-0" style="overflow:hidden;">
+      <img id="home-hero-img" src="assets/imagens/hero-fundo-woodframe.png"
+        alt="Casa de madeira construída em pinho nórdico em Portugal" />
     </div>
 
     <!-- Dark gradient overlay -->
     <div class="absolute inset-0 z-10"
-      style="background: linear-gradient(to bottom, rgba(28,43,30,0.75) 0%, rgba(28,43,30,0.55) 40%, rgba(28,43,30,0.92) 100%);">
+      style="background: linear-gradient(to bottom, rgba(28,43,30,0.80) 0%, rgba(28,43,30,0.72) 40%, rgba(28,43,30,0.95) 100%);">
     </div>
 
     <!-- Subtle grain on overlay -->
@@ -349,7 +365,7 @@
 
       <!-- Subheadline -->
       <p class="font-sans text-base md:text-xl text-muted font-light max-w-2xl leading-relaxed mb-12">
-        Construção especializada em timber frame e madeira natural.<br class="hidden md:block" />
+        Construção especializada em wood frame modular e madeira natural.<br class="hidden md:block" />
         Do projeto à obra — em todo Portugal.
       </p>
 
@@ -406,7 +422,7 @@
           <!-- Content -->
           <h3 class="font-display text-xl text-foreground mb-3 font-semibold">Casas de Madeira</h3>
           <p class="text-muted text-sm leading-relaxed mb-8 flex-1">
-            Construção integral em timber frame e madeira maciça. Estruturas robustas, montagem precisa e acabamentos de
+            Construção modular em madeira de pinho nórdico. Estruturas robustas, montagem precisa e acabamentos de
             excelência para habitação permanente — de 100m² a 300m² e além.
           </p>
           <!-- Subtle bottom accent -->
@@ -436,7 +452,7 @@
           </div>
         </article>
 
-        <!-- Card 3 — Velaturas e Tratamentos -->
+        <!-- Card 3 — Velaturas -->
         <article class="craft-surface p-8 lg:p-10 flex flex-col items-start group">
           <!-- Icon -->
           <div class="mb-7 text-primary transition-transform duration-300 group-hover:-translate-y-1">
@@ -450,7 +466,7 @@
             </svg>
           </div>
           <!-- Content -->
-          <h3 class="font-display text-xl text-foreground mb-3 font-semibold">Velaturas e Tratamentos</h3>
+          <h3 class="font-display text-xl text-foreground mb-3 font-semibold">Velaturas</h3>
           <p class="text-muted text-sm leading-relaxed mb-8 flex-1">
             Velatura de madeira nova e envelhecida, em tom natural ou pigmentado. Proteção profunda contra a
             humidade, fungos e raios UV — para que a madeira dure décadas sem perder beleza.
@@ -792,7 +808,7 @@
             constrói habitações. A diferença está na mão, no olho e em décadas de respeito pelo material.
           </p>
           <p class="text-muted leading-relaxed mb-5 text-base">
-            Nos últimos anos especializou-se em construção de casas de madeira e estruturas em timber frame de média e
+            Nos últimos anos especializou-se em construção de casas de madeira em sistema modular de média e
             grande dimensão, percorrendo Portugal de norte a sul. Cada obra é executada com presença constante, sem
             subcontratação do trabalho de carpintaria.
           </p>
@@ -988,7 +1004,7 @@
         <div class="p-10 lg:p-14 lg:w-2/5 flex flex-col justify-between" style="background-color: rgba(42,31,20,0.7);">
           <div>
             <h3 class="font-display text-2xl text-foreground mb-2">NV Madeira</h3>
-            <p class="text-muted text-sm mb-10 leading-relaxed">Construção especializada em timber frame e madeira
+            <p class="text-muted text-sm mb-10 leading-relaxed">Construção especializada em wood frame modular e madeira
               natural. Santarém — Portugal.</p>
 
             <!-- Contact items -->
@@ -1331,6 +1347,31 @@
         submitBtn.disabled = false;
         setTimeout(() => formSuccess.classList.add('hidden'), 5000);
       }, 1200);
+    });
+  </script>
+
+  <!-- ═══════════════════════════════════════════════════
+       HERO PARALLAX (GSAP)
+       ═══════════════════════════════════════════════════ -->
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // 1. Entrada: scale 1.08 → 1 em 1.8s
+    gsap.fromTo('#home-hero-img',
+      { scale: 1.08 },
+      { scale: 1, duration: 1.8, ease: 'power2.out' }
+    );
+
+    // 2. Parallax: translação Y enquanto o utilizador faz scroll
+    gsap.to('#home-hero-img', {
+      y: '18%',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      }
     });
   </script>
 
