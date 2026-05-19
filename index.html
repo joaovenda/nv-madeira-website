@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-PT" class="scroll-smooth">
 
 <head>
@@ -251,17 +251,20 @@
       background: rgba(201, 147, 58, 0.06);
       transform: translateY(-2px);
     }
-  /* ─── Hero parallax ────────────────────────────── */
+
+    /* ─── Hero parallax ────────────────────────────── */
     #home-hero-img {
       position: absolute;
       inset: 0;
       width: 100%;
-      height: 110%; /* extra para o parallax viajar */
+      height: 110%;
+      /* extra para o parallax viajar */
       object-fit: cover;
       object-position: center;
       transform-origin: center top;
       will-change: transform;
-      top: -5%; /* centra o excesso */
+      top: -5%;
+      /* centra o excesso */
     }
 
     /* ─── WhatsApp Float Button ─────────────────────── */
@@ -304,9 +307,20 @@
     }
 
     @keyframes wa-pulse {
-      0%   { transform: scale(1); opacity: 0.7; }
-      70%  { transform: scale(1.55); opacity: 0; }
-      100% { transform: scale(1.55); opacity: 0; }
+      0% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+
+      70% {
+        transform: scale(1.55);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1.55);
+        opacity: 0;
+      }
     }
 
     /* Tooltip */
@@ -322,7 +336,7 @@
       letter-spacing: 0.04em;
       white-space: nowrap;
       padding: 0.4rem 0.85rem;
-      border: 1px solid rgba(201,147,58,0.25);
+      border: 1px solid rgba(201, 147, 58, 0.25);
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.2s ease, transform 0.2s ease;
@@ -332,7 +346,8 @@
     .whatsapp-float:hover .whatsapp-float__tooltip {
       opacity: 1;
       transform: translateY(-50%) translateX(0);
-    }  </style>
+    }
+  </style>
 
   <!-- GSAP + ScrollTrigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -390,20 +405,24 @@
   </nav>
 
   <!-- Mobile Menu Backdrop (fora do nav para não ser cortado) -->
-  <div id="menu-backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300" style="z-index: 998;"></div>
+  <div id="menu-backdrop"
+    class="fixed inset-0 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"
+    style="z-index: 998;"></div>
 
   <!-- Mobile Menu Drawer (fora do nav) -->
   <div id="mobile-menu"
     class="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm border-l border-white/[0.07] transform translate-x-full transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col shadow-2xl"
     style="z-index: 1000; background-color: #1C2B1E;">
-    
+
     <!-- Drawer Header -->
     <div class="flex items-center justify-between px-6 py-5 border-b border-white/[0.07]">
       <span class="font-display text-foreground text-lg tracking-wide">
         NV <span class="text-primary">Madeira</span>
       </span>
-      <button id="menu-close" class="text-foreground p-2 -mr-2 hover:text-primary transition-colors" aria-label="Fechar menu">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+      <button id="menu-close" class="text-foreground p-2 -mr-2 hover:text-primary transition-colors"
+        aria-label="Fechar menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" stroke-width="1.8">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
@@ -411,36 +430,68 @@
 
     <!-- Drawer Links -->
     <div class="flex flex-col px-6 py-2 overflow-y-auto flex-1">
-      <a href="#servicos" class="mobile-link text-foreground hover:text-primary text-[1.1rem] font-display transition-colors duration-200 py-4 border-b border-white/[0.07] flex items-center gap-4">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      <a href="#servicos"
+        class="mobile-link text-foreground hover:text-primary text-[1.1rem] font-display transition-colors duration-200 py-4 border-b border-white/[0.07] flex items-center gap-4">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none"
+          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+        </svg>
         Serviços
       </a>
-      
-      <a href="#portfolio" class="mobile-link text-foreground hover:text-primary text-[1.1rem] font-display transition-colors duration-200 py-4 border-b border-white/[0.07] flex items-center gap-4">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+
+      <a href="#portfolio"
+        class="mobile-link text-foreground hover:text-primary text-[1.1rem] font-display transition-colors duration-200 py-4 border-b border-white/[0.07] flex items-center gap-4">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none"
+          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+          <line x1="3" y1="9" x2="21" y2="9" />
+          <line x1="3" y1="15" x2="21" y2="15" />
+          <line x1="9" y1="3" x2="9" y2="21" />
+        </svg>
         Portfólio
       </a>
 
-      <a href="#sobre" class="mobile-link text-foreground hover:text-primary text-[1.1rem] font-display transition-colors duration-200 py-4 border-b border-white/[0.07] flex items-center gap-4">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <a href="#sobre"
+        class="mobile-link text-foreground hover:text-primary text-[1.1rem] font-display transition-colors duration-200 py-4 border-b border-white/[0.07] flex items-center gap-4">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none"
+          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
         Sobre
       </a>
-      <a href="#contacto" class="mobile-link text-foreground hover:text-primary text-[1.1rem] font-display transition-colors duration-200 py-4 flex items-center gap-4">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <a href="#contacto"
+        class="mobile-link text-foreground hover:text-primary text-[1.1rem] font-display transition-colors duration-200 py-4 flex items-center gap-4">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none"
+          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        </svg>
         Contacto
       </a>
     </div>
 
     <!-- Drawer Footer -->
     <div class="p-6 border-t border-white/[0.07]">
-      <a href="#contacto" class="mobile-link btn-primary w-full text-center text-sm mb-5 flex justify-center">Pedir Orçamento</a>
+      <a href="#contacto" class="mobile-link btn-primary w-full text-center text-sm mb-5 flex justify-center">Pedir
+        Orçamento</a>
       <div class="flex flex-col gap-3">
-        <a href="tel:+351964344112" class="text-muted text-sm flex items-center gap-3 hover:text-primary transition-colors">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.24h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.29 6.29l.82-.73a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <a href="tel:+351964344112"
+          class="text-muted text-sm flex items-center gap-3 hover:text-primary transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="1.5">
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.24h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.29 6.29l.82-.73a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
           +351 964 344 112
         </a>
-        <a href="mailto:venda.nuno@gmail.com" class="text-muted text-sm flex items-center gap-3 hover:text-primary transition-colors">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <a href="mailto:venda.nuno@gmail.com"
+          class="text-muted text-sm flex items-center gap-3 hover:text-primary transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="1.5">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
           venda.nuno@gmail.com
         </a>
       </div>
@@ -1200,6 +1251,9 @@
         <div class="p-10 lg:p-14 lg:w-3/5">
           <form id="contact-form" class="grid grid-cols-1 sm:grid-cols-2 gap-5" novalidate>
 
+            <input type="text" id="website_url" name="website_url" style="display:none !important" tabindex="-1"
+              autocomplete="off">
+
             <div class="flex flex-col gap-1.5">
               <label for="nome" class="text-xs text-muted uppercase tracking-widest font-sans">Nome *</label>
               <input type="text" id="nome" name="nome" required placeholder="O seu nome"
@@ -1320,7 +1374,7 @@
       navbar.classList.toggle('scrolled', window.scrollY > 40);
     });
 
-        // ─── Mobile Menu Drawer
+    // ─── Mobile Menu Drawer
     const menuToggle = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
     const menuClose = document.getElementById('menu-close');
@@ -1484,9 +1538,15 @@
 
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
+
+      if (document.getElementById('website_url').value) {
+        formSuccess.classList.remove('hidden');
+        setTimeout(() => formSuccess.classList.add('hidden'), 5000);
+        return;
+      }
       const nome = document.getElementById('nome').value.trim();
       const tel = document.getElementById('telemovel').value.trim();
-      
+
       if (!nome || !tel) {
         [document.getElementById('nome'), document.getElementById('telemovel')].forEach(input => {
           if (!input.value.trim()) {
@@ -1496,7 +1556,7 @@
         });
         return;
       }
-      
+
       submitBtn.textContent = 'A enviar...';
       submitBtn.style.opacity = '0.7';
       submitBtn.disabled = true;
@@ -1511,14 +1571,14 @@
 
       // Template configurado no EmailJS
       emailjs.send('service_ym4fnxp', 'template_pm9v5ln', templateParams)
-        .then(function() {
+        .then(function () {
           contactForm.querySelectorAll('input, textarea').forEach(el => el.value = '');
           formSuccess.classList.remove('hidden');
-          submitBtn.textContent = 'Solicitar Orçamento Gratuito';
-          submitBtn.style.opacity = '1';
-          submitBtn.disabled = false;
-          setTimeout(() => formSuccess.classList.add('hidden'), 5000);
-        }, function(error) {
+          submitBtn.textContent = '✅ Pedido Enviado';
+          // submitBtn.style.opacity = '1';
+          // submitBtn.disabled = false; // Mantém desativado
+          // setTimeout(() => formSuccess.classList.add('hidden'), 5000);
+        }, function (error) {
           console.error('Falha no EmailJS:', error);
           alert('Ocorreu um erro ao enviar a mensagem. Por favor, contacte-nos por telefone ou WhatsApp.');
           submitBtn.textContent = 'Solicitar Orçamento Gratuito';
@@ -1531,7 +1591,7 @@
   <!-- EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script type="text/javascript">
-    (function() {
+    (function () {
       // Public Key
       emailjs.init("JZJBdl8gB4ldMsO9D");
     })();
@@ -1564,15 +1624,14 @@
 
 
   <!-- ── WhatsApp Floating Button ── -->
-  <a href="https://wa.me/351964344112" target="_blank" rel="noopener noreferrer"
-     class="whatsapp-float" aria-label="Contactar via WhatsApp">
+  <a href="https://wa.me/351964344112" target="_blank" rel="noopener noreferrer" class="whatsapp-float"
+    aria-label="Contactar via WhatsApp">
     <span class="whatsapp-float__tooltip">Fale connosco</span>
     <svg viewBox="0 0 24 24" fill="currentColor" class="whatsapp-float__icon" aria-hidden="true">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
     </svg>
-  </a></body>
+  </a>
+</body>
 
 </html>
-
-
-
