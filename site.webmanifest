@@ -1,5 +1,5 @@
 {
-  "name": "Nv Madeira",
+  "name": "NV Madeira",
   "short_name": "NV",
   "icons": [
     {
@@ -15,7 +15,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#ffffff",
+  "theme_color": "#1C2B1E",
   "background_color": "#c89238",
   "display": "standalone"
 }
