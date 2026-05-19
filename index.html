@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-PT" class="scroll-smooth">
 
 <head>
@@ -9,17 +9,17 @@
     content="Construção de casas de madeira, decks e exteriores e velaturas em Portugal. Nuno Filipe Venda — especialista em wood frame modular com formação técnica. Orçamento gratuito." />
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://joaovenda.github.io/nv-madeira-website/" />
+  <link rel="canonical" href="https://nvmadeira.pt/" />
 
   <!-- Open Graph — partilha WhatsApp / Facebook / LinkedIn -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="pt_PT" />
-  <meta property="og:url" content="https://joaovenda.github.io/nv-madeira-website/" />
+  <meta property="og:url" content="https://nvmadeira.pt/" />
   <meta property="og:title" content="NV Madeira — Casas de Madeira, Decks e Velaturas" />
   <meta property="og:description"
     content="Construção de casas de madeira, decks e exteriores e velaturas em Portugal. Nuno Filipe Venda — especialista em construção modular em madeira. Orçamento gratuito." />
   <meta property="og:image"
-    content="https://joaovenda.github.io/nv-madeira-website/assets/imagens/portfolio/portfolio-01-habitacao-madeira-concluida.jpg" />
+    content="https://nvmadeira.pt/assets/imagens/portfolio/portfolio-01-habitacao-madeira-concluida.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content="NV Madeira" />
@@ -31,7 +31,7 @@
     "@type": "LocalBusiness",
     "name": "NV Madeira",
     "description": "Construção de casas de madeira em sistema wood frame modular, decks e exteriores, e velaturas de madeira em Portugal. Especialista com formação técnica em carpintaria.",
-    "url": "https://joaovenda.github.io/nv-madeira-website/",
+    "url": "https://nvmadeira.pt/",
     "telephone": "+351964344112",
     "email": "venda.nuno@gmail.com",
     "founder": {
@@ -62,7 +62,7 @@
       ]
     },
     "priceRange": "800€ – 1500€/m²",
-    "image": "https://joaovenda.github.io/nv-madeira-website/assets/imagens/portfolio/portfolio-01-habitacao-madeira.jpg",
+    "image": "https://nvmadeira.pt/assets/imagens/portfolio/portfolio-01-habitacao-madeira.jpg",
     "sameAs": []
   }
   </script>
@@ -268,6 +268,13 @@
   <!-- GSAP + ScrollTrigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
 </head>
 
 <body class="bg-background text-foreground font-sans antialiased">
@@ -1318,7 +1325,7 @@
     // ─── Secção 9: Footer
     gsap.from("footer > div > div", { scrollTrigger: { trigger: "footer", start: "top 85%" }, opacity: 0, y: 20, stagger: 0.2, duration: 0.8, ease: "power3.out" });
 
-    // ─── Contact form (demo handler)
+    // ─── Contact form (EmailJS)
     const contactForm = document.getElementById('contact-form');
     const formSuccess = document.getElementById('form-success');
     const submitBtn = document.getElementById('submit-btn');
@@ -1327,6 +1334,7 @@
       e.preventDefault();
       const nome = document.getElementById('nome').value.trim();
       const tel = document.getElementById('telemovel').value.trim();
+      
       if (!nome || !tel) {
         [document.getElementById('nome'), document.getElementById('telemovel')].forEach(input => {
           if (!input.value.trim()) {
@@ -1336,18 +1344,45 @@
         });
         return;
       }
+      
       submitBtn.textContent = 'A enviar...';
       submitBtn.style.opacity = '0.7';
       submitBtn.disabled = true;
-      setTimeout(() => {
-        contactForm.querySelectorAll('input, textarea').forEach(el => el.value = '');
-        formSuccess.classList.remove('hidden');
-        submitBtn.textContent = 'Solicitar Orçamento Gratuito';
-        submitBtn.style.opacity = '1';
-        submitBtn.disabled = false;
-        setTimeout(() => formSuccess.classList.add('hidden'), 5000);
-      }, 1200);
+
+      const templateParams = {
+        nome: nome,
+        telemovel: tel,
+        localizacao: document.getElementById('localizacao').value.trim() || 'Não especificada',
+        dimensao: document.getElementById('dimensao').value.trim() || 'Não especificada',
+        mensagem: document.getElementById('mensagem').value.trim() || 'Nenhuma mensagem adicional.'
+      };
+
+      // Template configurado no EmailJS
+      emailjs.send('service_ym4fnxp', 'template_pm9v5ln', templateParams)
+        .then(function() {
+          contactForm.querySelectorAll('input, textarea').forEach(el => el.value = '');
+          formSuccess.classList.remove('hidden');
+          submitBtn.textContent = 'Solicitar Orçamento Gratuito';
+          submitBtn.style.opacity = '1';
+          submitBtn.disabled = false;
+          setTimeout(() => formSuccess.classList.add('hidden'), 5000);
+        }, function(error) {
+          console.error('Falha no EmailJS:', error);
+          alert('Ocorreu um erro ao enviar a mensagem. Por favor, contacte-nos por telefone ou WhatsApp.');
+          submitBtn.textContent = 'Solicitar Orçamento Gratuito';
+          submitBtn.style.opacity = '1';
+          submitBtn.disabled = false;
+        });
     });
+  </script>
+
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function() {
+      // Public Key
+      emailjs.init("JZJBdl8gB4ldMsO9D");
+    })();
   </script>
 
   <!-- ═══════════════════════════════════════════════════
@@ -1378,3 +1413,4 @@
 </body>
 
 </html>
+
