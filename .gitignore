@@ -1,0 +1,6 @@
+# Build tools for Tailwind CSS local compilation
+node_modules/
+package.json
+package-lock.json
+tailwind.config.js
+src/

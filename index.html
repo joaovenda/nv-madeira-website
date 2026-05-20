@@ -75,50 +75,8 @@
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet" />
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#C9933A',
-            secondary: '#2A1F14',
-            background: '#1C2B1E',
-            foreground: '#F2EDE4',
-            muted: '#B8A898',
-          },
-          fontFamily: {
-            display: ['"Playfair Display"', 'serif'],
-            sans: ['Inter', 'sans-serif'],
-          },
-          borderRadius: {
-            DEFAULT: '0px',
-            none: '0px',
-            sm: '0px',
-            md: '0px',
-            lg: '0px',
-            xl: '0px',
-            full: '9999px', /* só para elementos circulares explícitos */
-          },
-          keyframes: {
-            fadeInUp: {
-              '0%': { opacity: '0', transform: 'translateY(24px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            },
-            smoothReveal: {
-              '0%': { opacity: '0', transform: 'scale(1.06)' },
-              '100%': { opacity: '1', transform: 'scale(1)' },
-            },
-          },
-          animation: {
-            'fade-in-up': 'fadeInUp 700ms cubic-bezier(0.16, 1, 0.3, 1) forwards',
-            'smooth-reveal': 'smoothReveal 900ms ease-out forwards',
-          },
-        },
-      },
-    }
-  </script>
+  <!-- Compiled Tailwind CSS -->
+  <link href="assets/css/style.css" rel="stylesheet" />
 
   <style>
     /* ─── Global Reset ─────────────────────────────── */
