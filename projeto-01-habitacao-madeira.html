@@ -12,16 +12,17 @@
   <link rel="canonical" href="https://nvmadeira.pt/projeto-01-habitacao-madeira.html" />
 
   <!-- Open Graph -->
-  <meta property="og:type"        content="article" />
-  <meta property="og:locale"      content="pt_PT" />
-  <meta property="og:url"         content="https://nvmadeira.pt/projeto-01-habitacao-madeira.html" />
-  <meta property="og:title"       content="Habitação em Madeira — Wood Frame Modular | NV Madeira" />
-  <meta property="og:description" content="Construção de habitação em wood frame modular executada pela NV Madeira. Ver galeria e pedir orçamento gratuito." />
-  <meta property="og:image"       content="https://nvmadeira.pt/assets/imagens/open-graph-image.webp" />
-  <meta property="og:image:type"  content="image/webp" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="pt_PT" />
+  <meta property="og:url" content="https://nvmadeira.pt/projeto-01-habitacao-madeira.html" />
+  <meta property="og:title" content="Habitação em Madeira — Wood Frame Modular | NV Madeira" />
+  <meta property="og:description"
+    content="Construção de habitação em wood frame modular executada pela NV Madeira. Ver galeria e pedir orçamento gratuito." />
+  <meta property="og:image" content="https://nvmadeira.pt/assets/imagens/open-graph-image.webp" />
+  <meta property="og:image:type" content="image/webp" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:site_name"   content="NV Madeira" />
+  <meta property="og:site_name" content="NV Madeira" />
 
   <!-- Schema.org — CreativeWork / ConstructionProject -->
   <script type="application/ld+json">
@@ -52,175 +53,6 @@
   <!-- Compiled Tailwind CSS -->
   <link href="assets/css/style.css" rel="stylesheet" />
 
-  <style>
-    /* ── Base ── */
-    *, *::before, *::after { box-sizing: border-box; }
-    html { background: #1C2B1E; }
-    body {
-      background: #1C2B1E;
-      color: #F2EDE4;
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      overflow-x: hidden;
-    }
-
-    /* ── Craft surface ── */
-    .craft-surface {
-      background: rgba(36,51,38,0.85);
-      border: 1px solid rgba(184,168,152,0.12);
-      backdrop-filter: blur(12px);
-    }
-
-    /* ── Nav ── */
-    #nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      height: 76px;
-      padding: 0 2rem;
-      transition: background 0.4s, border-color 0.4s;
-    }
-    #nav.scrolled {
-      background: rgba(28, 43, 30, 0.92);
-      border-bottom: 1px solid rgba(184,168,152,0.12);
-      backdrop-filter: blur(16px);
-    }
-
-    /* Top hero scrim — always visible nav */
-    #hero-top-scrim {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 180px;
-      background: linear-gradient(to bottom, rgba(12,20,13,0.72) 0%, transparent 100%);
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    /* ── Hero ── */
-    #hero {
-      position: relative;
-      height: 100svh;
-      min-height: 600px;
-      overflow: hidden;
-    }
-    #hero-img {
-      position: absolute;
-      inset: 0;
-      width: 100%; height: 110%; /* extra height for parallax travel */
-      object-fit: cover;
-      transform-origin: center top;
-      will-change: transform;
-      top: -5%; /* centre the extra height */
-    }
-    /* heroScale removed — GSAP handles entrance + parallax */
-    #hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(28,43,30,0.98) 0%,
-        rgba(28,43,30,0.45) 40%,
-        rgba(28,43,30,0.15) 100%
-      );
-    }
-    #hero-content {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 3.5rem 2rem 3rem;
-      max-width: 900px;
-      margin: 0 auto;
-      padding-left: max(2rem, env(safe-area-inset-left));
-      padding-right: max(2rem, env(safe-area-inset-right));
-      animation: fadeUp 0.9s 0.3s both ease-out;
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(28px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── Divider line ── */
-    .line-accent {
-      display: inline-block;
-      width: 2.5rem;
-      height: 1px;
-      background: #C9933A;
-      vertical-align: middle;
-      margin-right: 0.75rem;
-    }
-
-    /* ─── WhatsApp Float Button ─────────────────────── */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      z-index: 999;
-      width: 56px;
-      height: 56px;
-      background-color: #25D366;
-      border-radius: 9999px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      text-decoration: none;
-    }
-
-    .whatsapp-float:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 28px rgba(37, 211, 102, 0.55);
-    }
-
-    .whatsapp-float__icon {
-      width: 30px;
-      height: 30px;
-      color: #ffffff;
-    }
-
-    /* Pulse ring */
-    .whatsapp-float::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 9999px;
-      background: rgba(37, 211, 102, 0.4);
-      animation: wa-pulse 2.5s ease-out infinite;
-    }
-
-    @keyframes wa-pulse {
-      0%   { transform: scale(1); opacity: 0.7; }
-      70%  { transform: scale(1.55); opacity: 0; }
-      100% { transform: scale(1.55); opacity: 0; }
-    }
-
-    /* Tooltip */
-    .whatsapp-float__tooltip {
-      position: absolute;
-      right: calc(100% + 12px);
-      top: 50%;
-      transform: translateY(-50%);
-      background: #1C2B1E;
-      color: #F2EDE4;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.04em;
-      white-space: nowrap;
-      padding: 0.4rem 0.85rem;
-      border: 1px solid rgba(201,147,58,0.25);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s ease, transform 0.2s ease;
-      transform: translateY(-50%) translateX(6px);
-    }
-
-    .whatsapp-float:hover .whatsapp-float__tooltip {
-      opacity: 1;
-      transform: translateY(-50%) translateX(0);
-    }  </style>
-
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -237,18 +69,19 @@
   <nav id="nav">
     <!-- Back button -->
     <a href="index.html#portfolio"
-       class="inline-flex items-center gap-2 text-foreground/80 hover:text-foreground text-xs uppercase tracking-widest font-sans transition-colors duration-300 group">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-           fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"
-           class="transition-transform duration-300 group-hover:-translate-x-1">
-        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      class="inline-flex items-center gap-2 text-foreground/80 hover:text-foreground text-xs uppercase tracking-widest font-sans transition-colors duration-300 group">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="1.5" stroke-linecap="square"
+        class="transition-transform duration-300 group-hover:-translate-x-1">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
       </svg>
       <span class="hidden sm:inline">Portfólio</span>
     </a>
 
     <!-- Logo — igual ao index.html -->
     <a href="index.html" class="flex items-center gap-3 group" aria-label="NV Madeira – página inicial">
-      <div class="w-9 h-9 border border-primary/60 flex items-center justify-center transition-colors duration-300 group-hover:border-primary">
+      <div
+        class="w-9 h-9 border border-primary/60 flex items-center justify-center transition-colors duration-300 group-hover:border-primary">
         <span class="font-display text-primary font-semibold text-sm leading-none">NV</span>
       </div>
       <span class="font-display text-foreground text-lg tracking-wide">
@@ -258,34 +91,33 @@
 
     <!-- CTA -->
     <a href="index.html#contacto"
-       class="hidden sm:inline-flex items-center gap-2 text-primary text-xs uppercase tracking-widest font-sans transition-colors duration-300 justify-self-end group">
+      class="hidden sm:inline-flex items-center gap-2 text-primary text-xs uppercase tracking-widest font-sans transition-colors duration-300 justify-self-end group">
       Orçamento
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-           fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" class="transition-transform duration-300 group-hover:translate-x-1">
-        <path d="M5 12h14M12 5l7 7-7 7"/>
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="1.5" stroke-linecap="square"
+        class="transition-transform duration-300 group-hover:translate-x-1">
+        <path d="M5 12h14M12 5l7 7-7 7" />
       </svg>
     </a>
   </nav>
 
   <!-- Breadcrumb -->
-  <div id="breadcrumb"
-       style="position:fixed;top:76px;left:0;right:0;z-index:99;
+  <div id="breadcrumb" style="position:fixed;top:76px;left:0;right:0;z-index:99;
               display:flex;align-items:center;
               height:28px;
               padding:0 2rem;
               background:rgba(28,43,30,0.0);
               transition:background 0.4s, border-color 0.4s;
-              border-bottom:1px solid transparent;"
-       aria-label="Localização">
+              border-bottom:1px solid transparent;" aria-label="Localização">
     <p style="font-family:'Inter',sans-serif;font-size:0.65rem;letter-spacing:0.12em;
               line-height:1;text-transform:uppercase;color:rgba(184,168,152,0.55);margin:0;">
       <a href="index.html" style="color:inherit;text-decoration:none;transition:color 0.2s;"
-         onmouseover="this.style.color='rgba(201,147,58,0.8)'" onmouseout="this.style.color='inherit'">
+        onmouseover="this.style.color='rgba(201,147,58,0.8)'" onmouseout="this.style.color='inherit'">
         NV Madeira
       </a>
       <span style="margin:0 0.5rem;opacity:0.4;">·</span>
       <a href="index.html#portfolio" style="color:inherit;text-decoration:none;transition:color 0.2s;"
-         onmouseover="this.style.color='rgba(201,147,58,0.8)'" onmouseout="this.style.color='inherit'">
+        onmouseover="this.style.color='rgba(201,147,58,0.8)'" onmouseout="this.style.color='inherit'">
         Portfólio
       </a>
       <span style="margin:0 0.5rem;opacity:0.4;">·</span>
@@ -298,9 +130,8 @@
        HERO
        ═══════════════════════════════════════════════ -->
   <section id="hero">
-    <img id="hero-img"
-         src="assets/imagens/portfolio/portfolio-01-habitacao-madeira-concluida.jpg"
-         alt="Habitação em Madeira — Projeto 01" />
+    <img id="hero-img" src="assets/imagens/portfolio/portfolio-01-habitacao-madeira-concluida.jpg"
+      alt="Habitação em Madeira — Projeto 01" />
 
     <!-- Top scrim for nav legibility -->
     <div id="hero-top-scrim"></div>
@@ -328,7 +159,8 @@
   <section id="ficha" class="relative py-0">
 
     <!-- Top accent line -->
-    <div style="height:1px; background: linear-gradient(to right, transparent, rgba(201,147,58,0.4), transparent);"></div>
+    <div style="height:1px; background: linear-gradient(to right, transparent, rgba(201,147,58,0.4), transparent);">
+    </div>
 
     <div class="craft-surface">
       <div class="max-w-5xl mx-auto px-6 py-8">
@@ -366,7 +198,8 @@
     </div>
 
     <!-- Bottom accent line -->
-    <div style="height:1px; background: linear-gradient(to right, transparent, rgba(184,168,152,0.15), transparent);"></div>
+    <div style="height:1px; background: linear-gradient(to right, transparent, rgba(184,168,152,0.15), transparent);">
+    </div>
 
   </section>
 
@@ -420,15 +253,15 @@
        ═══════════════════════════════════════════════ -->
   <script>
     const nav = document.getElementById('nav');
-    const bc  = document.getElementById('breadcrumb');
+    const bc = document.getElementById('breadcrumb');
     window.addEventListener('scroll', () => {
       const scrolled = window.scrollY > 60;
       nav.classList.toggle('scrolled', scrolled);
       if (bc) {
-        bc.style.background     = scrolled ? 'rgba(28,43,30,0.88)' : 'rgba(28,43,30,0.0)';
-        bc.style.borderColor    = scrolled ? 'rgba(184,168,152,0.1)' : 'transparent';
+        bc.style.background = scrolled ? 'rgba(28,43,30,0.88)' : 'rgba(28,43,30,0.0)';
+        bc.style.borderColor = scrolled ? 'rgba(184,168,152,0.1)' : 'transparent';
         bc.style.backdropFilter = scrolled ? 'blur(12px)' : 'none';
-        bc.style.opacity        = scrolled ? '1' : '0';
+        bc.style.opacity = scrolled ? '1' : '0';
       }
     }, { passive: true });
     if (bc) { bc.style.opacity = '0'; }
@@ -476,7 +309,7 @@
 
     // Description columns fade-in
     const descEls = [
-      { el: document.querySelector('.desc-left'),  delay: 0   },
+      { el: document.querySelector('.desc-left'), delay: 0 },
       { el: document.querySelector('.desc-right'), delay: 0.15 },
     ];
     descEls.forEach(({ el, delay }) => {
@@ -516,7 +349,7 @@
           <h2 class="font-display text-2xl md:text-3xl text-foreground font-semibold">Galeria do Projeto</h2>
         </div>
         <p class="text-muted text-xs font-sans text-right hidden sm:block">
-          Clique numa imagem<br/>para ver em fullscreen
+          Clique numa imagem<br />para ver em fullscreen
         </p>
       </div>
 
@@ -524,25 +357,32 @@
       <div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="gallery-grid">
 
         <!-- Foto 1 — real -->
-        <div class="gallery-item aspect-[4/3] overflow-hidden craft-surface cursor-pointer relative group col-span-2 md:col-span-2"
-             data-src="assets/imagens/portfolio/portfolio-01-habitacao-madeira-concluida.jpg"
-             data-caption="Habitação em Madeira — vista exterior">
+        <div
+          class="gallery-item aspect-[4/3] overflow-hidden craft-surface cursor-pointer relative group col-span-2 md:col-span-2"
+          data-src="assets/imagens/portfolio/portfolio-01-habitacao-madeira-concluida.jpg"
+          data-caption="Habitação em Madeira — vista exterior">
           <img src="assets/imagens/portfolio/portfolio-01-habitacao-madeira-concluida.jpg"
-               alt="Vista exterior da habitação"
-               class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
-          <div class="absolute inset-0 bg-background/0 group-hover:bg-background/25 transition-colors duration-400 flex items-center justify-center">
-            <svg class="opacity-0 group-hover:opacity-100 transition-opacity duration-300" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F2EDE4" stroke-width="1.5" stroke-linecap="square">
-              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+            alt="Vista exterior da habitação"
+            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+          <div
+            class="absolute inset-0 bg-background/0 group-hover:bg-background/25 transition-colors duration-400 flex items-center justify-center">
+            <svg class="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F2EDE4"
+              stroke-width="1.5" stroke-linecap="square">
+              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
             </svg>
           </div>
         </div>
 
         <!-- Placeholder 2 -->
         <div class="gallery-item aspect-[4/3] overflow-hidden craft-surface cursor-not-allowed relative group"
-             data-placeholder="true">
+          data-placeholder="true">
           <div class="w-full h-full flex flex-col items-center justify-center gap-3 bg-surface/60">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(184,168,152,0.4)" stroke-width="1" stroke-linecap="square">
-              <rect x="3" y="3" width="18" height="18"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+              stroke="rgba(184,168,152,0.4)" stroke-width="1" stroke-linecap="square">
+              <rect x="3" y="3" width="18" height="18" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <path d="M21 15l-5-5L5 21" />
             </svg>
             <span class="text-muted/40 text-xs uppercase tracking-widest font-sans">Em breve</span>
           </div>
@@ -550,10 +390,13 @@
 
         <!-- Placeholder 3 -->
         <div class="gallery-item aspect-[4/3] overflow-hidden craft-surface cursor-not-allowed relative group"
-             data-placeholder="true">
+          data-placeholder="true">
           <div class="w-full h-full flex flex-col items-center justify-center gap-3 bg-surface/60">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(184,168,152,0.4)" stroke-width="1" stroke-linecap="square">
-              <rect x="3" y="3" width="18" height="18"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+              stroke="rgba(184,168,152,0.4)" stroke-width="1" stroke-linecap="square">
+              <rect x="3" y="3" width="18" height="18" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <path d="M21 15l-5-5L5 21" />
             </svg>
             <span class="text-muted/40 text-xs uppercase tracking-widest font-sans">Em breve</span>
           </div>
@@ -561,10 +404,13 @@
 
         <!-- Placeholder 4 -->
         <div class="gallery-item aspect-[4/3] overflow-hidden craft-surface cursor-not-allowed relative group"
-             data-placeholder="true">
+          data-placeholder="true">
           <div class="w-full h-full flex flex-col items-center justify-center gap-3 bg-surface/60">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(184,168,152,0.4)" stroke-width="1" stroke-linecap="square">
-              <rect x="3" y="3" width="18" height="18"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+              stroke="rgba(184,168,152,0.4)" stroke-width="1" stroke-linecap="square">
+              <rect x="3" y="3" width="18" height="18" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <path d="M21 15l-5-5L5 21" />
             </svg>
             <span class="text-muted/40 text-xs uppercase tracking-widest font-sans">Em breve</span>
           </div>
@@ -572,10 +418,13 @@
 
         <!-- Placeholder 5 -->
         <div class="gallery-item aspect-[4/3] overflow-hidden craft-surface cursor-not-allowed relative group"
-             data-placeholder="true">
+          data-placeholder="true">
           <div class="w-full h-full flex flex-col items-center justify-center gap-3 bg-surface/60">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(184,168,152,0.4)" stroke-width="1" stroke-linecap="square">
-              <rect x="3" y="3" width="18" height="18"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+              stroke="rgba(184,168,152,0.4)" stroke-width="1" stroke-linecap="square">
+              <rect x="3" y="3" width="18" height="18" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <path d="M21 15l-5-5L5 21" />
             </svg>
             <span class="text-muted/40 text-xs uppercase tracking-widest font-sans">Em breve</span>
           </div>
@@ -583,10 +432,13 @@
 
         <!-- Placeholder 6 -->
         <div class="gallery-item aspect-[4/3] overflow-hidden craft-surface cursor-not-allowed relative group"
-             data-placeholder="true">
+          data-placeholder="true">
           <div class="w-full h-full flex flex-col items-center justify-center gap-3 bg-surface/60">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(184,168,152,0.4)" stroke-width="1" stroke-linecap="square">
-              <rect x="3" y="3" width="18" height="18"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+              stroke="rgba(184,168,152,0.4)" stroke-width="1" stroke-linecap="square">
+              <rect x="3" y="3" width="18" height="18" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <path d="M21 15l-5-5L5 21" />
             </svg>
             <span class="text-muted/40 text-xs uppercase tracking-widest font-sans">Em breve</span>
           </div>
@@ -603,24 +455,24 @@
   <div id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
     <div id="lb-backdrop"></div>
     <button id="lb-close" aria-label="Fechar">
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-           fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
-        <path d="M18 6L6 18M6 6l12 12"/>
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+        <path d="M18 6L6 18M6 6l12 12" />
       </svg>
     </button>
     <button id="lb-prev" aria-label="Anterior">
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-           fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
-        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
       </svg>
     </button>
     <div id="lb-img-wrap">
       <img id="lb-img" src="" alt="" />
     </div>
     <button id="lb-next" aria-label="Seguinte">
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-           fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
-        <path d="M5 12h14M12 5l7 7-7 7"/>
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+        <path d="M5 12h14M12 5l7 7-7 7" />
       </svg>
     </button>
     <p id="lb-caption"></p>
@@ -633,8 +485,14 @@
        ═══════════════════════════════════════════════ -->
   <style>
     /* Gallery items */
-    .gallery-item { transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
-    .gallery-item.hidden-init { opacity: 0; transform: translateY(16px); }
+    .gallery-item {
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .gallery-item.hidden-init {
+      opacity: 0;
+      transform: translateY(16px);
+    }
 
     /* Lightbox */
     #lightbox {
@@ -645,7 +503,11 @@
       align-items: center;
       justify-content: center;
     }
-    #lightbox.active { display: flex; }
+
+    #lightbox.active {
+      display: flex;
+    }
+
     #lb-backdrop {
       position: absolute;
       inset: 0;
@@ -653,6 +515,7 @@
       backdrop-filter: blur(8px);
       cursor: pointer;
     }
+
     #lb-img-wrap {
       position: relative;
       z-index: 2;
@@ -662,21 +525,29 @@
       align-items: center;
       justify-content: center;
     }
+
     #lb-img {
       max-width: 100%;
       max-height: 85svh;
       object-fit: contain;
-      border: 1px solid rgba(184,168,152,0.15);
+      border: 1px solid rgba(184, 168, 152, 0.15);
       opacity: 0;
       transform: scale(0.96);
       transition: opacity 0.35s ease-out, transform 0.35s ease-out;
     }
-    #lb-img.loaded { opacity: 1; transform: scale(1); }
-    #lb-close, #lb-prev, #lb-next {
+
+    #lb-img.loaded {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #lb-close,
+    #lb-prev,
+    #lb-next {
       position: fixed;
       z-index: 3;
-      background: rgba(36,51,38,0.7);
-      border: 1px solid rgba(184,168,152,0.2);
+      background: rgba(36, 51, 38, 0.7);
+      border: 1px solid rgba(184, 168, 152, 0.2);
       color: #F2EDE4;
       cursor: pointer;
       display: flex;
@@ -685,33 +556,52 @@
       padding: 0.65rem;
       transition: background 0.2s, border-color 0.2s;
     }
-    #lb-close:hover, #lb-prev:hover, #lb-next:hover {
-      background: rgba(201,147,58,0.2);
-      border-color: rgba(201,147,58,0.5);
+
+    #lb-close:hover,
+    #lb-prev:hover,
+    #lb-next:hover {
+      background: rgba(201, 147, 58, 0.2);
+      border-color: rgba(201, 147, 58, 0.5);
     }
-    #lb-close { top: 1.5rem; right: 1.5rem; }
-    #lb-prev  { left: 1.5rem;  top: 50%; transform: translateY(-50%); }
-    #lb-next  { right: 1.5rem; top: 50%; transform: translateY(-50%); }
+
+    #lb-close {
+      top: 1.5rem;
+      right: 1.5rem;
+    }
+
+    #lb-prev {
+      left: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    #lb-next {
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
     #lb-caption {
       position: fixed;
       bottom: 2rem;
       left: 50%;
       transform: translateX(-50%);
       z-index: 3;
-      color: rgba(242,237,228,0.7);
+      color: rgba(242, 237, 228, 0.7);
       font-family: 'Inter', sans-serif;
       font-size: 0.75rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       text-align: center;
     }
+
     #lb-counter {
       position: fixed;
       top: 1.6rem;
       left: 50%;
       transform: translateX(-50%);
       z-index: 3;
-      color: rgba(242,237,228,0.4);
+      color: rgba(242, 237, 228, 0.4);
       font-family: 'Inter', sans-serif;
       font-size: 0.7rem;
       letter-spacing: 0.1em;
@@ -757,9 +647,20 @@
     }
 
     @keyframes wa-pulse {
-      0%   { transform: scale(1); opacity: 0.7; }
-      70%  { transform: scale(1.55); opacity: 0; }
-      100% { transform: scale(1.55); opacity: 0; }
+      0% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+
+      70% {
+        transform: scale(1.55);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1.55);
+        opacity: 0;
+      }
     }
 
     /* Tooltip */
@@ -775,7 +676,7 @@
       letter-spacing: 0.04em;
       white-space: nowrap;
       padding: 0.4rem 0.85rem;
-      border: 1px solid rgba(201,147,58,0.25);
+      border: 1px solid rgba(201, 147, 58, 0.25);
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.2s ease, transform 0.2s ease;
@@ -785,7 +686,8 @@
     .whatsapp-float:hover .whatsapp-float__tooltip {
       opacity: 1;
       transform: translateY(-50%) translateX(0);
-    }  </style>
+    }
+  </style>
 
 
   <!-- ═══════════════════════════════════════════════
@@ -818,17 +720,17 @@
       ghdr.style.opacity = '0'; ghdr.style.transform = 'translateY(14px)';
       ghdr.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
       new IntersectionObserver(([e]) => {
-        if (e.isIntersecting) { ghdr.style.opacity='1'; ghdr.style.transform='translateY(0)'; }
+        if (e.isIntersecting) { ghdr.style.opacity = '1'; ghdr.style.transform = 'translateY(0)'; }
       }, { threshold: 0.3 }).observe(ghdr);
     }
 
     // ── Lightbox ──
-    const lb       = document.getElementById('lightbox');
-    const lbImg    = document.getElementById('lb-img');
-    const lbCap    = document.getElementById('lb-caption');
-    const lbCtr    = document.getElementById('lb-counter');
-    const lbPrev   = document.getElementById('lb-prev');
-    const lbNext   = document.getElementById('lb-next');
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    const lbCap = document.getElementById('lb-caption');
+    const lbCtr = document.getElementById('lb-counter');
+    const lbPrev = document.getElementById('lb-prev');
+    const lbNext = document.getElementById('lb-next');
 
     // Only real images (no placeholders)
     const realItems = [...document.querySelectorAll('.gallery-item:not([data-placeholder])')];
@@ -874,9 +776,9 @@
     lbNext.addEventListener('click', () => navigate(1));
     document.addEventListener('keydown', e => {
       if (!lb.classList.contains('active')) return;
-      if (e.key === 'Escape')      closeLightbox();
-      if (e.key === 'ArrowLeft')   navigate(-1);
-      if (e.key === 'ArrowRight')  navigate(1);
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') navigate(-1);
+      if (e.key === 'ArrowRight') navigate(1);
     });
   </script>
 
@@ -888,10 +790,12 @@
 
     <!-- Radial glow -->
     <div class="absolute inset-0 pointer-events-none"
-         style="background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,147,58,0.07) 0%, transparent 70%);"></div>
+      style="background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,147,58,0.07) 0%, transparent 70%);"></div>
 
     <!-- Top line -->
-    <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(201,147,58,0.3),transparent);"></div>
+    <div
+      style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(201,147,58,0.3),transparent);">
+    </div>
 
     <div class="max-w-3xl mx-auto px-6 text-center cta-block">
       <p class="text-primary text-xs uppercase tracking-widest font-sans mb-6">
@@ -905,12 +809,12 @@
         personalizado — sem compromisso.
       </p>
       <a href="index.html#contacto"
-         class="inline-flex items-center gap-3 border border-primary text-primary text-xs uppercase tracking-widest font-sans px-8 py-4 hover:bg-primary hover:text-background transition-all duration-300 group">
+        class="inline-flex items-center gap-3 border border-primary text-primary text-xs uppercase tracking-widest font-sans px-8 py-4 hover:bg-primary hover:text-background transition-all duration-300 group">
         Pedir Orçamento Gratuito
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-             fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"
-             class="transition-transform duration-300 group-hover:translate-x-1">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="1.5" stroke-linecap="square"
+          class="transition-transform duration-300 group-hover:translate-x-1">
+          <path d="M5 12h14M12 5l7 7-7 7" />
         </svg>
       </a>
     </div>
@@ -921,46 +825,46 @@
   <!-- ═══════════════════════════════════════════════
        NAVEGAÇÃO ENTRE PROJETOS
        ═══════════════════════════════════════════════ -->
-  <nav id="proj-nav" aria-label="Navegação entre projetos"
-       style="border-top:1px solid rgba(184,168,152,0.12);">
+  <nav id="proj-nav" aria-label="Navegação entre projetos" style="border-top:1px solid rgba(184,168,152,0.12);">
     <div class="grid grid-cols-1 md:grid-cols-2">
 
       <!-- Projeto anterior -->
-      <a href="projeto-05-fundacoes-alvenaria.html"
-         class="proj-nav-item group relative flex items-center gap-5 px-8 py-8
+      <a href="projeto-05-fundacoes-alvenaria.html" class="proj-nav-item group relative flex items-center gap-5 px-8 py-8
                 border-b md:border-b-0 md:border-r border-foreground/10
                 transition-colors duration-300 hover:bg-surface/50">
         <!-- Hover line -->
         <div class="absolute right-0 top-0 bottom-0 w-px bg-primary scale-y-0 group-hover:scale-y-100
                     transition-transform duration-300 origin-top"></div>
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-             fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"
-             class="text-muted group-hover:text-primary transition-colors duration-300 shrink-0">
-          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="1.5" stroke-linecap="square"
+          class="text-muted group-hover:text-primary transition-colors duration-300 shrink-0">
+          <path d="M19 12H5M12 19l-7-7 7-7" />
         </svg>
         <div>
           <span class="block text-muted text-xs uppercase tracking-widest font-sans mb-1">Projeto anterior</span>
-          <span class="block text-foreground font-display text-base italic group-hover:text-primary transition-colors duration-300">Fundações e Alvenaria</span>
+          <span
+            class="block text-foreground font-display text-base italic group-hover:text-primary transition-colors duration-300">Fundações
+            e Alvenaria</span>
         </div>
       </a>
 
       <!-- Próximo projeto -->
-      <a href="projeto-02-cobertura-alpendre.html"
-         class="proj-nav-item group relative flex items-center justify-end gap-5 px-8 py-8
+      <a href="projeto-02-cobertura-alpendre.html" class="proj-nav-item group relative flex items-center justify-end gap-5 px-8 py-8
                 transition-colors duration-300 hover:bg-surface/50">
         <!-- Hover line -->
         <div class="absolute left-0 top-0 bottom-0 w-px bg-primary scale-y-0 group-hover:scale-y-100
                     transition-transform duration-300 origin-top"></div>
         <div class="text-right">
           <span class="block text-muted text-xs uppercase tracking-widest font-sans mb-1">Próximo projeto</span>
-          <span class="block text-foreground font-display text-base italic group-hover:text-primary transition-colors duration-300">
+          <span
+            class="block text-foreground font-display text-base italic group-hover:text-primary transition-colors duration-300">
             Cobertura e Alpendre
           </span>
         </div>
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-             fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"
-             class="text-muted group-hover:text-primary transition-colors duration-300 shrink-0">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="1.5" stroke-linecap="square"
+          class="text-muted group-hover:text-primary transition-colors duration-300 shrink-0">
+          <path d="M5 12h14M12 5l7 7-7 7" />
         </svg>
       </a>
 
@@ -971,8 +875,7 @@
   <!-- ═══════════════════════════════════════════════
        FOOTER SIMPLES
        ═══════════════════════════════════════════════ -->
-  <footer class="py-8 px-6 text-center"
-          style="border-top:1px solid rgba(184,168,152,0.08);">
+  <footer class="py-8 px-6 text-center" style="border-top:1px solid rgba(184,168,152,0.08);">
     <p class="text-muted/50 text-xs font-sans uppercase tracking-widest">
       © 2025 NV Madeira · Nuno Filipe Venda
     </p>
@@ -981,7 +884,9 @@
 
   <!-- CTA + Nav reveal -->
   <style>
-    .proj-nav-item { transition: background 0.3s; }
+    .proj-nav-item {
+      transition: background 0.3s;
+    }
 
     /* ─── WhatsApp Float Button ─────────────────────── */
     .whatsapp-float {
@@ -1023,9 +928,20 @@
     }
 
     @keyframes wa-pulse {
-      0%   { transform: scale(1); opacity: 0.7; }
-      70%  { transform: scale(1.55); opacity: 0; }
-      100% { transform: scale(1.55); opacity: 0; }
+      0% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+
+      70% {
+        transform: scale(1.55);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1.55);
+        opacity: 0;
+      }
     }
 
     /* Tooltip */
@@ -1041,7 +957,7 @@
       letter-spacing: 0.04em;
       white-space: nowrap;
       padding: 0.4rem 0.85rem;
-      border: 1px solid rgba(201,147,58,0.25);
+      border: 1px solid rgba(201, 147, 58, 0.25);
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.2s ease, transform 0.2s ease;
@@ -1051,7 +967,8 @@
     .whatsapp-float:hover .whatsapp-float__tooltip {
       opacity: 1;
       transform: translateY(-50%) translateX(0);
-    }  </style>
+    }
+  </style>
   <script>
     // CTA fade-in
     const ctaBlock = document.querySelector('.cta-block');
@@ -1084,16 +1001,14 @@
 
 
   <!-- ── WhatsApp Floating Button ── -->
-  <a href="https://wa.me/351964344112" target="_blank" rel="noopener noreferrer"
-     class="whatsapp-float" aria-label="Contactar via WhatsApp">
+  <a href="https://wa.me/351964344112" target="_blank" rel="noopener noreferrer" class="whatsapp-float"
+    aria-label="Contactar via WhatsApp">
     <span class="whatsapp-float__tooltip">Fale connosco</span>
     <svg viewBox="0 0 24 24" fill="currentColor" class="whatsapp-float__icon" aria-hidden="true">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
     </svg>
-  </a></body>
+  </a>
+</body>
+
 </html>
-
-
-
-
-
