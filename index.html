@@ -2,6 +2,31 @@
 <html lang="pt-PT" class="scroll-smooth">
 
 <head>
+  <!-- Google Consent Mode v2 -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    
+    // Ler o consentimento do LocalStorage
+    var hasConsent = localStorage.getItem('nv_cookie_consent');
+    
+    // Configurar o estado padrão para Consent Mode v2 (RGPD/Europa)
+    gtag('consent', 'default', {
+      'ad_storage': hasConsent === 'granted' ? 'granted' : 'denied',
+      'ad_user_data': hasConsent === 'granted' ? 'granted' : 'denied',
+      'ad_personalization': hasConsent === 'granted' ? 'granted' : 'denied',
+      'analytics_storage': hasConsent === 'granted' ? 'granted' : 'denied',
+      'wait_for_update': 500
+    });
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ER5G9MYMDT"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-ER5G9MYMDT');
+  </script>
+  <!-- Cookie Banner JS -->
+  <script src="assets/js/cookies.js" defer></script>
   <meta name="google-site-verification" content="IXV_VrpUSQQh67t6sQ82Q_5nq4uRqI-2N7NEZ7X5De0" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -1012,6 +1037,14 @@
                 class="bg-background border border-white/10 px-4 py-3 text-foreground text-sm font-sans placeholder:text-muted focus:outline-none focus:border-primary/60 transition-colors duration-200 resize-none"></textarea>
             </div>
 
+            <div class="sm:col-span-2 flex items-start gap-2.5 mt-1 mb-2">
+              <input type="checkbox" id="rgpd-consent" name="rgpd_consent" required
+                class="mt-1 accent-primary bg-background border-white/10 rounded cursor-pointer" />
+              <label for="rgpd-consent" class="text-xs text-muted font-sans leading-relaxed cursor-pointer select-none">
+                Aceito que os meus dados sejam processados pela NV Madeira exclusivamente para responder a este pedido de contacto e orçamento. *
+              </label>
+            </div>
+
             <div class="sm:col-span-2 mt-2">
               <button type="submit" id="submit-btn" class="btn-primary w-full text-center">
                 Solicitar Orçamento Gratuito
@@ -1270,14 +1303,24 @@
       }
       const nome = document.getElementById('nome').value.trim();
       const tel = document.getElementById('telemovel').value.trim();
+      const rgpd = document.getElementById('rgpd-consent');
 
-      if (!nome || !tel) {
+      if (!nome || !tel || !rgpd.checked) {
         [document.getElementById('nome'), document.getElementById('telemovel')].forEach(input => {
           if (!input.value.trim()) {
             input.style.borderColor = 'rgba(201,147,58,0.7)';
             input.addEventListener('input', () => input.style.borderColor = '', { once: true });
           }
         });
+        if (!rgpd.checked) {
+          rgpd.parentElement.style.outline = '1px solid rgba(201,147,58,0.7)';
+          rgpd.parentElement.style.padding = '4px';
+          rgpd.parentElement.style.borderRadius = '4px';
+          rgpd.addEventListener('change', () => {
+            rgpd.parentElement.style.outline = '';
+            rgpd.parentElement.style.padding = '';
+          }, { once: true });
+        }
         return;
       }
 
