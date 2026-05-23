@@ -1,47 +1,46 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
     <loc>https://nvmadeira.pt/</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-05-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://nvmadeira.pt/projeto-01-habitacao-madeira.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <loc>https://nvmadeira.pt/projeto-01-novo-projeto.html</loc>
+    <lastmod>2026-05-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://nvmadeira.pt/projeto-02-cobertura-alpendre.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <loc>https://nvmadeira.pt/projeto-02-habitacao-madeira.html</loc>
+    <lastmod>2026-05-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://nvmadeira.pt/projeto-03-anexo-madeira-caixilharia.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <loc>https://nvmadeira.pt/projeto-03-cobertura-alpendre.html</loc>
+    <lastmod>2026-05-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://nvmadeira.pt/projeto-04-estrutura-encaixe-madeira.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <loc>https://nvmadeira.pt/projeto-04-anexo-madeira-caixilharia.html</loc>
+    <lastmod>2026-05-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://nvmadeira.pt/projeto-05-fundacoes-alvenaria.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <loc>https://nvmadeira.pt/projeto-05-estrutura-encaixe-madeira.html</loc>
+    <lastmod>2026-05-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
 </urlset>
-
