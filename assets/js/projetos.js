@@ -20,10 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const heroImg = document.getElementById('hero-img');
         if (heroImg) {
-            gsap.fromTo(heroImg,
-              { scale: 1.08 },
-              { scale: 1, duration: 1.8, ease: 'power2.out' }
-            );
+            // Apenas animar a escala no Desktop para não atrasar o LCP no Mobile
+            if (window.innerWidth > 768) {
+                gsap.fromTo(heroImg,
+                  { scale: 1.08 },
+                  { scale: 1, duration: 1.8, ease: 'power2.out' }
+                );
+            }
 
             gsap.to(heroImg, {
               y: '18%',
